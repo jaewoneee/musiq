@@ -28,7 +28,7 @@ export default {
         username: this.username,
         password: this.password,
       };
-      this.$http
+      await this.$http
         .post("/api/users/login", userData)
         .then(response => {
           this.dataMessage = response.data;

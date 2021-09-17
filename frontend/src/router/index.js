@@ -6,10 +6,10 @@ Vue.use(VueRouter);
 const router = new VueRouter({
   mode: "history",
   routes: [
-    {
-      path: "/",
-      redirect: "/login",
-    },
+    // {
+    //   path: "/",
+    //   redirect: "/login",
+    // },
     {
       path: "/login",
       name: "Login",
@@ -19,6 +19,11 @@ const router = new VueRouter({
       path: "/signup",
       name: "SingUp",
       component: () => import("../views/SignUpPage.vue"),
+    },
+    {
+      path: "/main",
+      name: "Main",
+      component: () => import("../views/MainPage.vue"),
     },
   ],
 });

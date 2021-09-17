@@ -12,13 +12,6 @@ connection.connect(function (err) {
   }
 });
 
-/* GET users listing. */
-router.get('/', function (req, res, next) {
-  connection.query('SELECT * FROM users', function (err, result) {
-    if (err) throw err;
-    res.send(result);
-  })
-});
 
 // 로그인
 router.post('/login', function (req, res, next) {
@@ -31,15 +24,17 @@ router.post('/login', function (req, res, next) {
 
     } else {
       bcrypt.compare(loginUser.password, result[0].password, function (err, result) {
-        if (err) {  //에러
+        if (err) { //에러
           return res.status(500).send('error');
         }
         if (result) { // 성공
           return res.status(200).json({
             message: 'success'
           })
-        } else {  //잘못된 비밀번호
-          return res.status(401).json('wrong pwd');
+        } else { //잘못된 비밀번호
+          return res.status(401).json({
+            message: 'wrong pwd'
+          });
         }
 
       })
