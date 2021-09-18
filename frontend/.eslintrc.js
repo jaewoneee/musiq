@@ -17,7 +17,7 @@ module.exports = {
       printWidth: 100,
       bracketSpacing: true,
       arrowParens: 'avoid',
-      endOfLine: 'auto',	
+      endOfLine: 'auto',
     }]
   },
   parserOptions: {

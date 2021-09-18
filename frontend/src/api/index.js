@@ -1,12 +1,14 @@
 import axios from "axios";
 
+//   회원가입
 function registerUser() {
   const url = "http://localhost:3000/api/users/signup";
   return axios.post(url);
 }
 
-function getMusicList(key) {
-  let url = `http://ws.audioscrobbler.com/2.0/?method=track.search&track=${key}&api_key=62c9e0e1a65f85c1f9e48493c14f7cf2&format=json`;
+// 음악정보 가져오기
+function getMusicList(value) {
+  let url = `http://localhost:3000/api/main/${value}`;
   return axios.get(url);
 }
 
