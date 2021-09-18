@@ -7,13 +7,19 @@
         placeholder="singer, song title"
         @keyup.enter="submitKey"
       />
+      <button type="button" @click="submitKey">find</button>
       <ul>
-        <li v-for="item in array" :key="item._id">
-          <a :href="item.url" target="_blank">{{ item.album.name }}</a>
+        <li v-for="item in array" :key="item.id">
+          <img :src="item.album.images[1].url" alt="" />
+          <p>{{ item.name }}</p>
+          <p>{{ item.artists[0].name }}</p>
+          <template v-if="item.preview_url">
+            <video controls="" name="media">
+              <source :src="item.preview_url" type="audio/mpeg" />
+            </video>
+          </template>
         </li>
       </ul>
-      <p>{{ thing }}</p>
-      <button type="button" @click="submitKey">find</button>
     </div>
   </div>
 </template>

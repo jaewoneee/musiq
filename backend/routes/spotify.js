@@ -8,24 +8,21 @@ var credentials = {
 };
 var spotifyApi = new SpotifyWebApi(credentials);
 
+// 음악 검색 결과 리스트 생성
 router.get('/:id', function (req, res) {
-    // let code = req.query['code'];
-    // The code that's returned as a query parameter to the redirect URI
-    // Retrieve an access token and a refresh token
-    var id = req.params.id;
-    console.log(id);
+    var id = req.params.id; // 검색어
+
     spotifyApi.clientCredentialsGrant()
         .then(function (data) {
             console.log('The token expires in ' + data.body['expires_in']);
             console.log('The access token is ' + data.body['access_token']);
 
-
-            // Set the access token on the API object to use it in later calls
+            // 스포티파이 토큰 생성
             spotifyApi.setAccessToken(data.body['access_token']);
-            // spotifyApi.setRefreshToken(data.body['refresh_token']);
+
+            // 검색어를 통한 가수 혹은 노래 검색
             spotifyApi.searchTracks(id).then(
                 function (data) {
-                    console.log(data.body);
                     res.send(data.body);
                 },
                 function (err) {
