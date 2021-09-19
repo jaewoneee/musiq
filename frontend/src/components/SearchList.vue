@@ -1,14 +1,7 @@
 <template>
   <div>
-    <input
-      type="text"
-      v-model="keyword"
-      placeholder="singer, song title"
-      @keyup.enter="getResult"
-    />
-    <button type="button" @click="getResult">find</button>
     <ul>
-      <li v-for="item in array" :key="item.id">
+      <li v-for="item in this.$store.state.array" :key="item.id">
         <img :src="item.album.images[1].url" alt="" />
         <p>{{ item.name }}</p>
         <p>{{ item.artists[0].name }}</p>
@@ -23,26 +16,12 @@
 </template>
 
 <script>
-import { getMusicList } from "../api/index";
 export default {
-  data() {
-    return {
-      keyword: "",
-      array: {},
-    };
-  },
-  methods: {
-    async getResult() {
-      try {
-        const { data } = await getMusicList(this.keyword);
-        this.array = data.tracks.items;
-        console.log(data);
-        console.log(data.tracks.items);
-      } catch (error) {
-        console.log(error);
-      }
-    },
-  },
+  // data() {
+  //   return {
+  //     array: this.$store.state.array,
+  //   };
+  // },
 };
 </script>
 
