@@ -1,6 +1,6 @@
 import axios from "axios";
 
-//   회원가입
+// 회원가입
 function registerUser() {
   const url = "http://localhost:3000/api/users/signup";
   return axios.post(url);

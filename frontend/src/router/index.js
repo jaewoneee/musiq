@@ -30,6 +30,11 @@ const router = new VueRouter({
       name: "Result",
       component: () => import("../views/MainPage.vue"),
     },
+    {
+      path: "/favorite",
+      name: "Favorite",
+      component: () => import("../views/FavoritePage.vue"),
+    },
   ],
 });
 

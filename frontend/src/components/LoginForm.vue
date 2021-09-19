@@ -2,10 +2,20 @@
   <div>
     <form @submit.prevent="submitForm">
       <div>
-        <input type="text" name="username" v-model="username" placeholder="username" />
+        <input
+          type="text"
+          name="username"
+          v-model="username"
+          placeholder="username"
+        />
       </div>
       <div>
-        <input type="password" name="password" v-model="password" placeholder="password" />
+        <input
+          type="password"
+          name="password"
+          v-model="password"
+          placeholder="password"
+        />
       </div>
       <button type="submit" :disabled="!username || !password">Login</button>
     </form>
@@ -30,10 +40,10 @@ export default {
       };
       await this.$http
         .post("/api/users/login", userData)
-        .then(response => {
+        .then((response) => {
           this.dataMessage = response.data;
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     },
