@@ -42,6 +42,7 @@ export default {
         .post("/api/users/login", userData)
         .then((response) => {
           this.dataMessage = response.data;
+          this.$store.commit("SET_USER", userdata);
         })
         .catch((err) => {
           console.log(err);

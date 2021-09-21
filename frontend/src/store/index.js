@@ -6,19 +6,21 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    user: {},
     array: {},
   },
   mutations: {
+    SET_USER(state, user) {
+      state.user = user;
+    },
     SET_LIST(state, data) {
       state.array = data;
     },
   },
   actions: {
     async SEARCH({ commit }, value) {
-      console.log(value);
       let response = await getMusicList(value);
       commit("SET_LIST", response.data.tracks.items);
-      console.log(response.data.tracks);
     },
   },
   modules: {},

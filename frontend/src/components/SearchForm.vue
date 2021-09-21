@@ -1,12 +1,14 @@
 <template>
-  <div>
-    <input
-      type="text"
-      v-model="keyword"
-      placeholder="singer, song title"
-      @keyup.enter="sendKeyword"
-    />
-    <button type="button" @click="sendKeyword">find</button>
+  <div class="search-box">
+    <div>
+      <input
+        type="text"
+        v-model="keyword"
+        placeholder="singer, song title"
+        @keyup.enter="sendKeyword"
+      />
+      <button type="button" @click="sendKeyword">find</button>
+    </div>
   </div>
 </template>
 

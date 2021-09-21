@@ -1,12 +1,17 @@
 <template>
   <div class="header-wrap">
     <header>
-      <h1 id="logo"><router-link to="/">Main</router-link></h1>
-      <ul>
+      <h1 id="logo"><router-link to="/">main</router-link></h1>
+      <ul class="nav">
+        <li>
+          <router-link to="/">List</router-link>
+        </li>
+        <li>
+          <router-link to="/favorite">Fav</router-link>
+        </li>
         <template v-if="isUserLogged">
           <li>
-            <router-link to="/">List</router-link>
-            <router-link to="/favorite">Fav</router-link>
+            <a href="" id="logout-btn">Logout</a>
           </li>
         </template>
         <template v-else>
