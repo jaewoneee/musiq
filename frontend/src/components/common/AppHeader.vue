@@ -2,6 +2,7 @@
   <div class="header-wrap">
     <header>
       <h1 id="logo"><router-link to="/">main</router-link></h1>
+      <span v-if="isUserLogin"> Hello, {{ $store.state.user.username }} </span>
       <ul class="nav">
         <li>
           <router-link to="/">List</router-link>
@@ -9,9 +10,11 @@
         <li>
           <router-link to="/favorite">Fav</router-link>
         </li>
-        <template v-if="isUserLogged">
+        <template v-if="isUserLogin">
           <li>
-            <a href="" id="logout-btn">Logout</a>
+            <a href="javascript:;" @click="logoutUser" id="logout-btn">
+              Logout
+            </a>
           </li>
         </template>
         <template v-else>
@@ -25,9 +28,17 @@
 <script>
 export default {
   data() {
-    return {
-      isUserLogged: true,
-    };
+    return {};
+  },
+  computed: {
+    isUserLogin() {
+      return this.$store.getters.isLogin;
+    },
+  },
+  methods: {
+    logoutUser() {
+      this.$store.commit("clearUsername");
+    },
   },
 };
 </script>

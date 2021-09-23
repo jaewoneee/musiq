@@ -34,19 +34,16 @@ export default {
   },
   methods: {
     async submitForm() {
-      const userData = {
-        username: this.username,
-        password: this.password,
-      };
-      await this.$http
-        .post("/api/users/login", userData)
-        .then((response) => {
-          this.dataMessage = response.data;
-          this.$store.commit("SET_USER", userdata);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      try {
+        const userData = {
+          username: this.username,
+          password: this.password,
+        };
+        await this.$store.dispatch("LOGIN", userData);
+        this.$router.push("/");
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };

@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 var cors = require('cors');
 
-// var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/users');
 var spotifyRouter = require('./routes/spotify');
 var app = express();
 
@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-// app.use('/api/users', usersRouter);
+app.use('/api/users', usersRouter);
 app.use('/api/main', spotifyRouter);
 
 // catch 404 and forward to error handler

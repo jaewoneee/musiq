@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { getMusicList } from "../api/index";
+import { getMusicList, loginUser, registerUser } from "../api/index";
 
 Vue.use(Vuex);
 
@@ -10,18 +10,36 @@ export default new Vuex.Store({
     array: {},
   },
   mutations: {
-    SET_USER(state, user) {
-      state.user = user;
+    setUsername(state, user) {
+      state.user = user || "";
     },
-    SET_LIST(state, data) {
+    setList(state, data) {
       state.array = data;
+    },
+    clearUsername(state) {
+      state.user = "";
     },
   },
   actions: {
+    async LOGIN({ commit }, value) {
+      const { data } = await loginUser(value);
+      commit("setUsername", data);
+      console.log(data);
+    },
+    async SIGNUP({ commit }, value) {
+      const { data } = await registerUser(value);
+      commit("setUsername", data);
+      console.log(data);
+    },
     async SEARCH({ commit }, value) {
       let response = await getMusicList(value);
-      commit("SET_LIST", response.data.tracks.items);
+      commit("setList", response.data.tracks.items);
     },
   },
   modules: {},
+  getters: {
+    isLogin(state) {
+      return state.user !== "";
+    },
+  },
 });

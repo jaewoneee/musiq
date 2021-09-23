@@ -45,19 +45,17 @@ export default {
   },
   methods: {
     async submitForm() {
-      const userData = {
-        username: this.username,
-        password: this.password,
-        nickname: this.nickname,
-      };
-      this.$http
-        .post("/api/users/signup", userData)
-        .then((response) => {
-          this.dataMessage = response;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      try {
+        const userData = {
+          username: this.username,
+          password: this.password,
+          nickname: this.nickname,
+        };
+        await this.$store.dispatch("SIGNUP", userData);
+        this.$router.push("/");
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
