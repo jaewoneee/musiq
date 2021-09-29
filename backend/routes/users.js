@@ -23,7 +23,7 @@ router.post('/login', function (req, res, next) {
     const nickname = result[0].nickname;
     
     if (result[0] == undefined) { // 존재하지 않는 유저라면
-
+      return res.status(500).send('error');
     } else {
       bcrypt.compare(loginUser.password, result[0].password, function (err, result) {
         if (err) { //에러
@@ -32,7 +32,7 @@ router.post('/login', function (req, res, next) {
         if (result) { // 성공
             console.log(nickname);
             return res.status(200).json({
-            username:nickname
+            nickname:nickname
           })
         } else { //잘못된 비밀번호
           return res.status(401).json({

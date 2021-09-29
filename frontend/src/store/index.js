@@ -6,12 +6,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    user: {},
-    array: {},
+    user: "",
+    array: "",
   },
   mutations: {
     setUsername(state, user) {
-      state.user = user || "";
+      state.user = user;
     },
     setList(state, data) {
       state.array = data;
@@ -40,6 +40,9 @@ export default new Vuex.Store({
   getters: {
     isLogin(state) {
       return state.user !== "";
+    },
+    isSearched(state) {
+      return state.array !== "";
     },
   },
 });

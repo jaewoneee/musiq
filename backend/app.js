@@ -7,7 +7,7 @@ var logger = require('morgan');
 var cors = require('cors');
 
 var usersRouter = require('./routes/users');
-var spotifyRouter = require('./routes/spotify');
+var musicRouter = require('./routes/music');
 var app = express();
 
 // view engine setup
@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use('/api/users', usersRouter);
-app.use('/api/main', spotifyRouter);
+app.use('/api/main', musicRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

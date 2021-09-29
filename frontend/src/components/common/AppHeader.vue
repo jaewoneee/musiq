@@ -1,8 +1,10 @@
 <template>
   <div class="header-wrap">
     <header>
-      <h1 id="logo"><router-link to="/">main</router-link></h1>
-      <span v-if="isUserLogin"> Hello, {{ $store.state.user.username }} </span>
+      <h1 id="logo">
+        <a href="/"></a>
+      </h1>
+      <span v-if="isUserLogin"> Hello, {{ $store.state.user.nickname }} </span>
       <ul class="nav">
         <li>
           <router-link to="/">List</router-link>
