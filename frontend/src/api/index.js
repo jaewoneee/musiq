@@ -18,7 +18,7 @@ function getPlaylist() {
 // 음악정보 가져오기
 function getMusicList(value) {
   let url = `http://localhost:3000/api/main/${value}`;
-  return axios.post(url);
+  return axios.get(url);
 }
 
 export { registerUser, loginUser, getPlaylist, getMusicList };

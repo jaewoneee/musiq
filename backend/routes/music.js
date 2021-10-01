@@ -38,7 +38,7 @@ router.get("/", function(req, res, next){
 
 
 // 음악 검색 결과 리스트 생성
-router.post("/:id", function (req, res) {
+router.get("/:id", function (req, res) {
   var id = req.params.id; // 검색어
 
   spotifyApi
@@ -51,7 +51,7 @@ router.post("/:id", function (req, res) {
       spotifyApi.setAccessToken(data.body["access_token"]);
 
       // 검색어를 통한 가수 혹은 노래 검색
-      spotifyApi.searchTracks(id).then(
+      spotifyApi.searchTracks(id,{ limit:50}).then(
         function (data) {
           res.send(data.body);
         },
