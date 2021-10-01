@@ -1,9 +1,12 @@
 <template>
   <div>
     <ul class="playlist-box">
-      <li></li>
-      <li></li>
-      <li></li>
+      <li>
+        <p class="title">Chill</p>
+        <div class="img-box">
+          <img src="../assets/images/chill.jpg" alt="" />
+        </div>
+      </li>
     </ul>
     <!-- <ul>
       <li v-for="song in playlist[1]" :key="song.id">

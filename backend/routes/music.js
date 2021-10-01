@@ -7,7 +7,9 @@ var router = express.Router();
 var credentials = {
   clientId: SpotifyInfo.clientId,
   clientSecret: SpotifyInfo.clientSecret,
+  redirectUri : SpotifyInfo.redirectUri,
 };
+var code = SpotifyInfo.code;
 var spotifyApi = new SpotifyWebApi(credentials);
 
 
@@ -21,11 +23,11 @@ router.get("/", function(req, res, next){
     }
 
     for(i = 0; i<result.length; i++){
-      if(result[i].id == 1){
+      if(result[i].id == 1){  //chill
         playlist[1].push(result[i])
-      }else if(result[i].id == 2){
+      }else if(result[i].id == 2){  //feeling good
         playlist[2].push(result[i])
-      }else{
+      }else{  //groove
         playlist[3].push(result[i])
       }
     }
@@ -36,7 +38,7 @@ router.get("/", function(req, res, next){
 
 
 // 음악 검색 결과 리스트 생성
-router.get("/:id", function (req, res) {
+router.post("/:id", function (req, res) {
   var id = req.params.id; // 검색어
 
   spotifyApi

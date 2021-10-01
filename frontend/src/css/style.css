@@ -68,3 +68,38 @@
   display: block;
   margin: 0 auto;
 }
+
+/**  playlist **/
+.playlist-box {
+  display: flex;
+  justify-content: space-between;
+}
+.playlist-box li {
+  width: 300px;
+  height: 650px;
+  box-sizing: border-box;
+  border: 1px solid #000;
+  padding: 10px;
+  position: relative;
+
+}
+.playlist-box li p.title {
+  width: 100%;
+  font-family: "capian" sans-serif;
+  font-weight: bold;
+  font-size: 3rem;
+  padding-bottom: 10px;
+}
+.playlist-box li .img-box{
+  width: calc(100% - 20px);
+  height: 370px;
+  overflow: hidden;
+  position: absolute;
+  bottom: 10px;
+} 
+.playlist-box li .img-box img {
+  width: 100%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
