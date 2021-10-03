@@ -1,25 +1,26 @@
 <template>
   <div>
     <swiper class="swiper" :options="swiperOption">
-      <swiper-slide>
+      <swiper-slide class="chill">
         <div class="img-box">
           <!-- <img src="../assets/images/chill.jpg" alt="" /> -->
         </div>
       </swiper-slide>
-      <swiper-slide>
-        <p class="mont bold">Book</p>
+      <swiper-slide class="fgood">
         <div class="img-box">
           <!-- <img src="../assets/images/chill.jpg" alt="" /> -->
         </div>
       </swiper-slide>
-      <swiper-slide>
+      <swiper-slide class="groove">
         <div class="img-box">
           <!-- <img src="../assets/images/chill.jpg" alt="" /> -->
         </div>
       </swiper-slide>
-      <div class="swiper-button-prev" slot="button-prev"></div>
-      <div class="swiper-button-next" slot="button-next"></div>
     </swiper>
+    <div class="swiper-func-wrap">
+      <div class="swiper-pagination" slot="pagination"></div>
+    </div>
+
     <!-- <ul>
       <li v-for="song in playlist[1]" :key="song.id">
         <p>{{ song.title }}</p>
@@ -40,30 +41,16 @@ export default {
     return {
       playlist: "",
       swiperOption: {
-        loop: true,
         slidesPerView: 1,
-        spaceBetween: 10,
-        breakpoints: {
-          // when window width is >= 320px
-          360: {
-            slidesPerView: 1,
-            spaceBetween: 20,
-          },
-
-          // when window width is >= 640px
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 40,
-          },
-        },
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
+        loop: true,
+        autoplay: true,
+        pagination: {
+          el: ".swiper-pagination",
+          type: "fraction",
         },
       },
     };
   },
-
   async created() {
     const { data } = await getPlaylist();
     this.playlist = data;

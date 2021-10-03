@@ -26,9 +26,11 @@
         <img :src="currentItem.src" alt="" style="width: 100%" />
       </div>
       <div slot="player">
-        <video controls="" name="media">
-          <source :src="currentItem.href" type="audio/mpeg" />
-        </video>
+        <template v-if="currentItem.href">
+          <video controls="" name="media">
+            <source :src="currentItem.href" type="audio/mpeg" />
+          </video>
+        </template>
       </div>
     </Modal>
   </div>

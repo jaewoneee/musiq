@@ -33,6 +33,7 @@ export default new Vuex.Store({
     },
     async SEARCH({ commit }, value) {
       let response = await getMusicList(value);
+      console.log(response);
       commit("setList", response.data.tracks.items);
     },
   },

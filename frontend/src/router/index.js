@@ -26,9 +26,14 @@ const router = new VueRouter({
       component: () => import("../views/MainPage.vue"),
     },
     {
-      path: "/main/:id",
+      path: "/search",
+      name: "Search",
+      component: () => import("../views/SearchPage.vue"),
+    },
+    {
+      path: "/search/:id",
       name: "Result",
-      component: () => import("../views/MainPage.vue"),
+      component: () => import("../views/SearchPage.vue"),
     },
     {
       path: "/favorite",

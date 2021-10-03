@@ -2,20 +2,20 @@
   <div class="header-wrap">
     <header>
       <h1 id="logo">
-        <a href="/"></a>
+        <a href="/main">logo</a>
       </h1>
-      <span v-if="isUserLogin"> Hello, {{ $store.state.user.nickname }} </span>
+
       <ul class="nav">
         <li>
-          <router-link to="/">List</router-link>
+          <router-link to="/main">List</router-link>
         </li>
         <li>
-          <router-link to="/favorite">Fav</router-link>
+          <router-link to="/search">Search</router-link>
         </li>
         <template v-if="isUserLogin">
           <li>
-            <a href="javascript:;" @click="logoutUser" id="logout-btn">
-              Logout
+            <a href="javascript:;" @click="logoutUser" id="logout-btn"
+              >Logout
             </a>
           </li>
         </template>
