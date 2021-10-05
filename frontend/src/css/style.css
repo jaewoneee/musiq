@@ -77,8 +77,8 @@
 .text-wrap {
   width: 100%;
   overflow: hidden;
-  font-size: 3.5vw;
-  margin-top: 12vh;
+  font-size: 4vw;
+  margin-top: 15vh;
   color: #fff;
 }
 .text-wrap .text-name-box span {
@@ -88,18 +88,18 @@
   margin: 2.5vh 0 6vh 0;
 }
 .text-wrap .text-quote-box p:first-child {
-  font-size: 6.5vw;
-  line-height: 8vw;
+  font-size: 7.5vw;
+  line-height: 10vw;
   font-weight: 600;
   color: rgb(228, 255, 75);
 }
 .text-wrap .text-quote-box p:last-child {
-  font-size: 2.5vw;
+  font-size: 3vw;
   text-align: right;
 }
 .list-box {
   width: 100%;
-  margin: 0 auto;
+  margin: 5vh auto 0 auto;
 }
 .list-box h4 {
   font-size: 3.7vw;
@@ -151,14 +151,14 @@
   position: relative;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+
   background-color: #42b983;
 }
 .swiper-func-wrap .swiper-pagination {
-  width: 100%;
-  background-color: #666;
+  width: fit-content;
   font-size: 12px;
-  position: unset;
+  left: unset;
+  bottom: unset;
   right: 0;
 }
 .swiper-pagination-current {

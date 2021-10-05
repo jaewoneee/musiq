@@ -1,22 +1,29 @@
 <template>
   <div class="search-list-box">
-    <ul>
-      <li
-        v-for="(item, index) in this.$store.state.array"
-        :key="item.id"
-        @click="showItem($event)"
-      >
-        <div><img :src="item.album.images[1].url" alt="album_art" /></div>
-        <p class="title">{{ item.name }}</p>
-        <p class="artist">{{ item.artists[0].name }}</p>
-        <input type="hidden" :value="index" id="index" />
-        <!-- <template v-if="item.preview_url">
+    <template v-if="isMusicSearch">
+      <ul>
+        <li
+          v-for="(item, index) in this.$store.state.array"
+          :key="item.id"
+          @click="showItem($event)"
+        >
+          <div><img :src="item.album.images[1].url" alt="album_art" /></div>
+          <p class="title">{{ item.name }}</p>
+          <p class="artist">{{ item.artists[0].name }}</p>
+          <input type="hidden" :value="index" id="index" />
+          <!-- <template v-if="item.preview_url">
           <video controls="" name="media">
             <source :src="item.preview_url" type="audio/mpeg" />
           </video>
         </template> -->
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </template>
+    <template v-else>
+      <ul>
+        <li>nothing to show</li>
+      </ul>
+    </template>
     <Modal v-if="showModal" @close="showModal = false">
       <h3 slot="header">
         {{ currentItem.title }}
@@ -63,6 +70,11 @@ export default {
     clearItem() {
       this.currentItem = {};
       this.showModal = !this.showModal;
+    },
+  },
+  computed: {
+    isMusicSearch() {
+      return this.$store.getters.isSearched;
     },
   },
 };

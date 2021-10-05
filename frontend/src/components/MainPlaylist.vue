@@ -44,11 +44,7 @@ export default {
     return {
       playlist: "",
       swiperOption: {
-        slidesPerView: 1.5,
-        freeMode: {
-          enabled: true,
-          sticky: true,
-        },
+        slidesPerView: 1.2,
         loop: true,
         autoplay: {
           delay: 3000,
