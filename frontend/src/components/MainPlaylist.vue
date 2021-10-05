@@ -1,17 +1,21 @@
 <template>
-  <div>
+  <div class="list-box">
+    <h4>Music by Mood</h4>
     <swiper class="swiper" :options="swiperOption">
       <swiper-slide class="chill">
+        <p>Chill</p>
         <div class="img-box">
           <!-- <img src="../assets/images/chill.jpg" alt="" /> -->
         </div>
       </swiper-slide>
       <swiper-slide class="fgood">
+        <p>Feeling Good</p>
         <div class="img-box">
           <!-- <img src="../assets/images/chill.jpg" alt="" /> -->
         </div>
       </swiper-slide>
       <swiper-slide class="groove">
+        <p>Groove</p>
         <div class="img-box">
           <!-- <img src="../assets/images/chill.jpg" alt="" /> -->
         </div>
@@ -20,7 +24,6 @@
     <div class="swiper-func-wrap">
       <div class="swiper-pagination" slot="pagination"></div>
     </div>
-
     <!-- <ul>
       <li v-for="song in playlist[1]" :key="song.id">
         <p>{{ song.title }}</p>
@@ -41,9 +44,15 @@ export default {
     return {
       playlist: "",
       swiperOption: {
-        slidesPerView: 1,
+        slidesPerView: 1.5,
+        freeMode: {
+          enabled: true,
+          sticky: true,
+        },
         loop: true,
-        autoplay: true,
+        autoplay: {
+          delay: 3000,
+        },
         pagination: {
           el: ".swiper-pagination",
           type: "fraction",

@@ -1,5 +1,5 @@
 <template>
-  <div id="content">
+  <div class="content">
     <div class="text-wrap">
       <p class="text-name-box">
         Hello,
@@ -10,7 +10,7 @@
         >.
       </p>
       <div class="text-quote-box">
-        <p>"Music is the shorthand of emotion."</p>
+        <p>“Music is the shorthand of emotion.”</p>
         <p>– Leo Tolstoy</p>
       </div>
     </div>
