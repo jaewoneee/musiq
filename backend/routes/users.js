@@ -12,7 +12,6 @@ connection.connect(function (err) {
   }
 });
 
-
 // 로그인
 router.post('/login', function (req, res, next) {
   const loginUser = {

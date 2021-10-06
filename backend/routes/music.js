@@ -27,6 +27,7 @@ router.get("/:id", function (req, res) {
       // 검색어를 통한 가수 혹은 노래 검색
       spotifyApi.searchTracks(id, { limit: 50 }).then(
         function (data) {
+          console.log(data);
           res.send(data.body);
         },
         function (err) {

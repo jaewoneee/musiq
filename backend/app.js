@@ -23,7 +23,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
-// app.use('/api/users', usersRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/main', listRouter);
 app.use("/api/search", musicRouter);
 
 // catch 404 and forward to error handler

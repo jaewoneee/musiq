@@ -17,7 +17,7 @@ function getPlaylist() {
 }
 // 음악정보 가져오기
 function getMusicList(value) {
-  let url = `http://localhost:3000/api/main/${value}`;
+  let url = `http://localhost:3000/api/search/${value}`;
   return axios.get(url);
 }
 

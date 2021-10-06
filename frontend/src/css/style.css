@@ -163,7 +163,7 @@
 }
 .swiper-pagination-current {
   color: rgb(228, 255, 75);
-  font-weight: 500;
+  font-weight: bold;
 }
 .img-box img {
   width: 100%;
@@ -195,8 +195,32 @@
   box-sizing: border-box;
   border: 1px solid #000;
 }
-.search-list-box ul li img {
+.search-list-box ul li .album-box{
   width: 100%;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #fff;
+  
+  }
+  .search-list-box ul li .album-box::after{
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+.search-list-box ul li .album-box img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  transform: translate(-50% ,-50%);
+}
+.search-list-box ul li .title{
+  font-weight: 600;
+  margin: 2vw 0 1vw 0;
+}
+.search-list-box ul li .artist{
+  font-size:2.5vw;
 }
 
 /* modal */
@@ -210,6 +234,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   display: table;
   transition: opacity 0.3s ease;
+
 }
 
 .modal-wrapper {
@@ -225,7 +250,8 @@
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.4s ease;
-  font-family: Helvetica, Arial, sans-serif;
+  font-size: 3vw;
+  font-family: "Montserrat", sans-serif;
 }
 
 .modal-header h3 {
@@ -266,5 +292,32 @@
 @media screen and (min-width: 360px) {
   .swiper-container {
     width: 100%;
+  }
+  .search-list-box ul li{
+    width: 50%;
+  }
+  .modal-mask.list .modal-container{
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+  }
+  .modal-mask.list .modal-container ul{
+    width: 100%;
+  }
+  .modal-mask.list .modal-container ul li{
+    height: 15vw;
+    display: flex;
+    padding: 5px 0;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+  }
+  .modal-mask.list .modal-container ul li img{
+
+    display: inline-block;
+  }
+  .modal-mask.list .modal-container ul li p{
+    display: flex;
+    align-items: center;
+    width: 35%;
   }
 }

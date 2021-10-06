@@ -7,7 +7,9 @@
           :key="item.id"
           @click="showItem($event)"
         >
-          <div><img :src="item.album.images[1].url" alt="album_art" /></div>
+          <div class="album-box">
+            <img :src="item.album.images[1].url" alt="album_art" />
+          </div>
           <p class="title">{{ item.name }}</p>
           <p class="artist">{{ item.artists[0].name }}</p>
           <input type="hidden" :value="index" id="index" />
@@ -26,11 +28,12 @@
     </template>
     <Modal v-if="showModal" @close="showModal = false">
       <h3 slot="header">
-        {{ currentItem.title }}
         <span class="fas fa-times closeModalBtn" @click="clearItem">X</span>
       </h3>
       <div slot="body">
         <img :src="currentItem.src" alt="" style="width: 100%" />
+        <p>{{ currentItem.title }}</p>
+        <p>{{ currentItem.artist }}</p>
       </div>
       <div slot="player">
         <template v-if="currentItem.href">
@@ -57,7 +60,8 @@ export default {
   },
   methods: {
     showItem(e) {
-      const i = e.path[1].childNodes[3].value;
+      const i = e.path[2].childNodes[3].value;
+      console.log(e, i);
       const info = {
         artist: this.$store.state.array[i].artists[0].name,
         title: this.$store.state.array[i].name,
