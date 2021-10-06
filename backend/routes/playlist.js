@@ -20,7 +20,6 @@ router.get("/", function(req, res, next){
         playlist[3].push(result[i])
       }
     }
-    console.log(playlist);
     res.send(playlist);
   })
 })
