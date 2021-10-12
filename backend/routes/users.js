@@ -19,28 +19,33 @@ router.post('/login', function (req, res, next) {
     'password': req.body.password
   }
   connection.query('SELECT * FROM users WHERE username = ?', [loginUser.username], function (err, result) {
-    const nickname = result[0].nickname;
-    
-    if (result[0] == undefined) { // 존재하지 않는 유저라면
-      return res.status(500).send('error');
-    } else {
-      bcrypt.compare(loginUser.password, result[0].password, function (err, result) {
-        if (err) { //에러
-          return res.status(500).send('error');
-        }
-        if (result) { // 성공
-            console.log(nickname);
-            return res.status(200).json({
-            nickname:nickname
-          })
-        } else { //잘못된 비밀번호
-          return res.status(401).json({
-            message: 'wrong pwd'
-          });
-        }
 
-      })
+    if (err){throw err;}
+    else if(result[0]){
+      const nickname = result[0].nickname;
+      if (result[0] == undefined) { // 존재하지 않는 유저라면
+        return res.status(500).send('error');
+      } else {
+        bcrypt.compare(loginUser.password, result[0].password, function (err, result) {
+          if (err) { //에러
+            return res.status(500).send('error');
+          }
+          if (result) { // 성공
+  
+              console.log(nickname);
+              return res.status(200).json({
+              nickname:nickname
+            })
+          } else { //잘못된 비밀번호
+            return res.status(401).json({
+              message: 'wrong pwd'
+            });
+          }
+  
+        })
+      }
     }
+
   })
 });
 

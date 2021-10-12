@@ -274,11 +274,15 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px #f0f0f0 inset !important;
+  transition: #000 5000s;
+  -webkit-text-fill-color: #fff !important;
+
 }
 
 /* 공통요소 */
-
+:root{
+  --color: rgb(228, 255, 75);
+}
 .bold {
   font-weight: bold;
 }

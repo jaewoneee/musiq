@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content main">
     <div class="text-wrap">
       <p class="text-name-box">
         Hello,

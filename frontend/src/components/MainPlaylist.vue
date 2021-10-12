@@ -4,19 +4,19 @@
     <swiper class="swiper" :options="swiperOption">
       <swiper-slide class="chill">
         <p>Chill</p>
-        <div class="img-box" @click="showPlaylist(1)">
+        <div class="img-box" @click="showPlaylist(1, 'Chill')">
           <!-- <img src="../assets/images/chill.jpg" alt="" /> -->
         </div>
       </swiper-slide>
       <swiper-slide class="fgood">
         <p>Feeling Good</p>
-        <div class="img-box" @click="showPlaylist(2)">
+        <div class="img-box" @click="showPlaylist(2, 'Feeling Good')">
           <!-- <img src="../assets/images/chill.jpg" alt="" /> -->
         </div>
       </swiper-slide>
       <swiper-slide class="groove">
         <p>Groove</p>
-        <div class="img-box" @click="showPlaylist(3)">
+        <div class="img-box" @click="showPlaylist(3, 'Groove')">
           <!-- <img src="../assets/images/chill.jpg" alt="" /> -->
         </div>
       </swiper-slide>
@@ -32,16 +32,19 @@
       </li>
     </ul> -->
     <Modal v-if="showModal" @close="showModal = false">
-      <h3 slot="header">
-        <span class="fas fa-times closeModalBtn" @click="clearList">X</span>
-      </h3>
-      <ul slot="body">
-        <li v-for="list in this.playlist" v-bind:key="list.title">
-          <img :src="list.img" alt="" />
-          <p>{{ list.title }}</p>
-          <p>{{ list.singer }}</p>
-        </li>
-      </ul>
+      <div slot="header">
+        <button class="fas fa-times close-btn" @click="clearList"></button>
+      </div>
+      <div slot="body">
+        <h2 class="title">{{ title }}</h2>
+        <ul>
+          <li v-for="list in this.playlist" v-bind:key="list.title">
+            <img :src="list.img" alt="" />
+            <p>{{ list.title }}</p>
+            <p>{{ list.singer }}</p>
+          </li>
+        </ul>
+      </div>
     </Modal>
   </div>
 </template>
@@ -56,6 +59,7 @@ export default {
   data() {
     return {
       playlist: "",
+      title: "",
       showModal: false,
       swiperOption: {
         slidesPerView: 1.2,
@@ -71,14 +75,15 @@ export default {
     };
   },
   methods: {
-    async showPlaylist(value) {
+    async showPlaylist(value, title) {
       var { data } = await getPlaylist();
       this.playlist = data[value];
-      console.log("넹ㅇ");
+      this.title = title;
       this.showModal = !this.showModal;
     },
     clearList() {
       this.playlist = "";
+      this.title = "";
       this.showModal = !this.showModal;
     },
   },

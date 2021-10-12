@@ -27,13 +27,19 @@
       </ul>
     </template>
     <Modal v-if="showModal" @close="showModal = false">
-      <h3 slot="header">
-        <span class="fas fa-times closeModalBtn" @click="clearItem">X</span>
-      </h3>
+      <div slot="header">
+        <button
+          type="button"
+          class="fas fa-times close-btn"
+          @click="clearItem"
+        ></button>
+      </div>
       <div slot="body">
         <img :src="currentItem.src" alt="" style="width: 100%" />
-        <p>{{ currentItem.title }}</p>
-        <p>{{ currentItem.artist }}</p>
+        <div class="info-box">
+          <p>{{ currentItem.title }}</p>
+          <p>{{ currentItem.artist }}</p>
+        </div>
       </div>
       <div slot="player">
         <template v-if="currentItem.href">

@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content search">
     <search-form></search-form>
     <search-list></search-list>
   </div>

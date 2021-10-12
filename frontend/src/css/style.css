@@ -9,7 +9,6 @@
   margin-bottom: 4vh;
 }
 .header-wrap header {
-  width: 98%;
   height: 50px;
   display: flex;
   justify-content: space-between;
@@ -46,7 +45,7 @@
   position: absolute;
   display: block;
   width: 100%;
-  border-bottom: 3px solid rgb(228, 255, 75);
+  border-bottom: 3px solid var(--color);
 }
 
 .header-wrap .nav li:hover a:not(.router-link-exact-active)::after {
@@ -54,7 +53,7 @@
   position: absolute;
   display: block;
   width: 100%;
-  border-bottom: 3px solid rgb(228, 255, 75);
+  border-bottom: 3px solid var(--color);
   animation: menuHover 0.2s ease-in;
 }
 @keyframes menuHover {
@@ -67,10 +66,6 @@
 }
 
 /* content */
-.content-wrap {
-  width: 92%;
-  margin: 0 auto;
-}
 
 /*  main page */
 
@@ -91,7 +86,7 @@
   font-size: 7.5vw;
   line-height: 10vw;
   font-weight: 600;
-  color: rgb(228, 255, 75);
+  color: var(--color);
 }
 .text-wrap .text-quote-box p:last-child {
   font-size: 3vw;
@@ -161,7 +156,7 @@
   right: 0;
 }
 .swiper-pagination-current {
-  color: rgb(228, 255, 75);
+  color: var(--color);
   font-weight: bold;
 }
 .img-box img {
@@ -170,17 +165,63 @@
   top: 50%;
   transform: translateY(-50%);
 }
-
+/* login */
+:is(.content.login, .content.signup) h2 {
+  font-size: 7vw;
+  font-weight: bold;
+  text-align: center;
+  margin: 3vh 0;
+}
+:is(.content.login, .content.signup) input {
+  width: 100%;
+  padding: 10px;
+  background-color: transparent;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 10px;
+  color: #fff;
+}
+:is(.content.login, .content.signup) button {
+  border: 1px solid #fff;
+  color: #fff;
+  width: 100%;
+  padding: 15px;
+  margin-top: 5px;
+}
+.content.login .signup-box {
+  font-size: 13px;
+  text-align: center;
+  margin-top: 3vh;
+}
+.content.login .signup-box a {
+  color: var(--color);
+  margin-left: 10px;
+  font-weight: 600;
+  text-decoration: underline;
+}
 /* search page*/
 .search-box {
-  background-color: bisque;
   width: 100%;
   display: flex;
-  height: 10vh;
+  height: 30px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #fff;
+  padding: 0 10px;
+  padding-bottom: 10px;
+}
+.search-box input {
+  width: calc(100% - 30px);
+  background-color: transparent;
+  color: #fff;
 }
 
+.search-box #search-btn {
+  width: 20px;
+  height: 20px;
+  background: url(../assets/images/icon/search.png) center no-repeat;
+  background-size: contain;
+}
 .search-list-box {
 }
 .search-list-box ul {
@@ -195,33 +236,32 @@
   margin-bottom: 6%;
   border: 1px solid #000;
 }
-.search-list-box ul li .album-box{
+.search-list-box ul li .album-box {
   width: 100%;
   overflow: hidden;
   position: relative;
   border: 1px solid #fff;
-  
-  }
-  .search-list-box ul li .album-box::after{
-    content: "";
-    display: block;
-    padding-bottom: 100%;
-  }
+}
+.search-list-box ul li .album-box::after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
 .search-list-box ul li .album-box img {
   width: 100%;
   position: absolute;
   top: 50%;
   left: 50%;
   display: block;
-  transform: translate(-50% ,-50%);
+  transform: translate(-50%, -50%);
 }
-.search-list-box ul li .title{
+.search-list-box ul li .title {
   font-weight: 600;
   margin: 2vw 0 1vw 0;
-  font-size:3vw;
+  font-size: 3vw;
 }
-.search-list-box ul li .artist{
-  font-size:2.5vw;
+.search-list-box ul li .artist {
+  font-size: 2.5vw;
 }
 
 /* modal */
@@ -235,7 +275,6 @@
   background-color: rgba(0, 0, 0, 0.5);
   display: table;
   transition: opacity 0.3s ease;
-
 }
 
 .modal-wrapper {
@@ -254,20 +293,33 @@
   font-size: 3vw;
   font-family: "Montserrat", sans-serif;
 }
-
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
+.modal-header div {
+  height: 20px;
 }
-
-.modal-body {
-  margin: 20px 0;
-}
-
-.modal-default-button {
+.modal-header div .close-btn {
   float: right;
+  width: 20px;
+  height: 20px;
+  background: url(../assets/images/icon/close.png) center no-repeat;
+  background-size: cover;
 }
-.modal-enter {
+.modal-wrapper.item .modal-header div {
+  margin-bottom: 20px;
+}
+.modal-wrapper.item .info-box {
+  margin: 10px 0;
+}
+.modal-wrapper.item .info-box p:first-child {
+  font-weight: 600;
+  font-size: 3.5vw;
+}
+.modal-body .title {
+  font-weight: bold;
+  color: #555;
+  font-size: 7vw;
+  margin: 0 0 3vh 0;
+}
+.modal-wrapper.item .modal-enter {
   opacity: 0;
 }
 
@@ -291,73 +343,91 @@
 
 /* mobile */
 @media screen and (min-width: 360px) {
+  .header-wrap header {
+    width: 96%;
+  }
+  .content.main {
+    width: 92%;
+    margin: 0 auto;
+  }
+  .content.search {
+    width: 96%;
+    margin: 0 auto;
+  }
+  .content.login,
+  .content.signup {
+    width: 70%;
+    margin: 0 auto;
+  }
   .swiper-container {
     width: 100%;
   }
 
-  .modal-mask.list .modal-container{
+  .modal-mask.list .modal-container {
     width: 100%;
     height: 100%;
     overflow: scroll;
   }
-  .modal-mask.list .modal-container ul{
+  .modal-mask.list .modal-container ul {
     width: 100%;
   }
-  .modal-mask.list .modal-container ul li{
+  .modal-mask.list .modal-container ul li:first-child {
+    border-top: 1px solid #ddd;
+  }
+  .modal-mask.list .modal-container ul li {
     height: 15vw;
     display: flex;
     padding: 5px 0;
     justify-content: space-between;
     border-bottom: 1px solid #ddd;
   }
-  .modal-mask.list .modal-container ul li img{
-
+  .modal-mask.list .modal-container ul li img {
     display: inline-block;
   }
-  .modal-mask.list .modal-container ul li p{
+  .modal-mask.list .modal-container ul li p {
     display: flex;
     align-items: center;
     width: 35%;
   }
 }
 @media screen and (min-width: 800px) {
-  .text-wrap .text-quote-box p:first-child{
+  .text-wrap .text-quote-box p:first-child {
     font-size: 5.5vw;
     line-height: 7vw;
   }
-  .list-box h4{
+  .list-box h4 {
     font-size: 3vw;
   }
-  .swiper-container{
+  .swiper-container {
     margin: 3vh 0;
   }
-  .swiper .swiper-slide{
+  .swiper .swiper-slide {
     padding: 0 10%;
   }
-  .swiper .swiper-slide p{
+  .swiper .swiper-slide p {
     font-size: 2.5vw;
     margin: 10px 0 20px 0;
   }
-  .modal-mask.list .modal-container ul li{
+  .modal-mask.list .modal-container ul li {
     height: 12vw;
     font-size: 2vw;
     padding: 10px 0;
   }
-  .search-list-box ul{
+  .search-list-box ul {
     display: flex;
     justify-content: space-between;
   }
-  .search-list-box ul li{
+  .search-list-box ul li {
     width: 24%;
   }
-  .search-list-box ul li .title{
+  .search-list-box ul li .title {
     font-size: 2vw;
     margin: 1vw 0;
   }
-  .search-list-box ul li .artist{
+  .search-list-box ul li .artist {
     font-size: 1.5vw;
   }
-  .search-list-box ul li:last-child{
+  .search-list-box ul li:last-child {
     margin-right: auto;
     margin-left: calc(4% / 3);
   }
