@@ -100,7 +100,7 @@ export default {
     },
     async addItem(item) {
       var { data } = await addFavorite(item);
-      console.log(data);
+      console.log("결과", data);
     },
     clearItem() {
       this.currentItem = {};

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { param } from "../../../backend/routes/users";
 
 // 회원가입
 function registerUser(user) {
@@ -24,7 +23,7 @@ function getMusicList(value) {
 // 좋아요 리스트 추가
 function addFavorite(item) {
   let url = "http://localhost:3000/api/search/add";
-  return axios.get(url, {
+  return axios.post(url, null, {
     params: {
       id: item.id,
       artist: item.artist,
