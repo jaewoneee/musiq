@@ -7,8 +7,9 @@
             <slot name="header"> </slot>
           </div>
           <div class="modal-body">
-            <slot name="body"> default body </slot>
-            <slot name="player"> default body </slot>
+            <slot name="body"></slot>
+            <slot name="fav"></slot>
+            <slot name="player"></slot>
           </div>
         </div>
       </div>

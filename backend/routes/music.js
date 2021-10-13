@@ -1,5 +1,6 @@
-var express = require("express");
+var express = require("express") ;
 var SpotifyWebApi = require("spotify-web-api-node");
+const connection = require("../mysql");
 var SpotifyInfo = require("../spotify.json");
 
 var router = express.Router();
@@ -38,6 +39,20 @@ router.get("/:id", function (req, res) {
     .catch(function (err) {
       console.log("Unfortunately, something has gone wrong.", err.message);
     });
+});
+
+// 좋아요 리스트에 음원 추가
+router.get("/add", function(req, res){
+  var data = req.data;
+  console.log(data);
+ 
+});
+
+// 좋아요 리스트 등록 여부 확인
+router.get("/fav/:id", function(req, res){
+  var id = req.params.id;
+  console.log(res);
+ res.status(200).json({key:id})
 });
 
 module.exports = router;

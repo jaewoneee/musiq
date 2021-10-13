@@ -1,5 +1,6 @@
 var express = require('express');
 var bcrypt = require('bcrypt');
+var shortid = require('shortid');
 var connection = require('../mysql');
 var router = express.Router();
 
@@ -23,6 +24,7 @@ router.post('/login', function (req, res, next) {
     if (err){throw err;}
     else if(result[0]){
       const nickname = result[0].nickname;
+
       if (result[0] == undefined) { // 존재하지 않는 유저라면
         return res.status(500).send('error');
       } else {
@@ -31,7 +33,6 @@ router.post('/login', function (req, res, next) {
             return res.status(500).send('error');
           }
           if (result) { // 성공
-  
               console.log(nickname);
               return res.status(200).json({
               nickname:nickname
@@ -52,6 +53,7 @@ router.post('/login', function (req, res, next) {
 // 회원가입
 router.post('/signup', function (req, res, next) {
   const user = {
+    'id': shortid.generate(),
     'username': req.body.username,
     'password': req.body.password,
     'nickname': req.body.nickname
@@ -61,12 +63,12 @@ router.post('/signup', function (req, res, next) {
     if (result[0] == undefined) {
       const salt = bcrypt.genSaltSync();
       const encryptedPassword = bcrypt.hashSync(user.password, salt);
-      connection.query('INSERT INTO users (username, password, nickname) VALUES(?, ?, ?)', [user.username, encryptedPassword, user.nickname], (err, result) => {
+      connection.query('INSERT INTO users (id, username, password, nickname) VALUES(?, ?, ?, ?)', [user.id, user.username, encryptedPassword, user.nickname], (err, result) => {
         if (err) throw err;
       });
       return res.send('success');
     } else { // 중복된 username이라면
-      return res.status(401).json('중복된 아이디입니다');
+      return res.status(401).json({msg:'중복된 아이디입니다'});
     }
   })
 });
