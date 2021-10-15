@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { getMusicList, loginUser, registerUser } from "../api/index";
+import { registerUser, loginUser } from "../api/auth";
+import { getMusicList } from "../api/music";
 import {
   saveAuthToCookie,
   saveUserToCookie,

@@ -53,7 +53,7 @@
 import { Swiper, SwiperSlide } from "vue-awesome-swiper";
 import "swiper/css/swiper.css";
 import Modal from "./common/ListModal.vue";
-import { getPlaylist } from "../api/index";
+import { getPlaylist } from "../api/music";
 export default {
   components: { Swiper, SwiperSlide, Modal },
   data() {

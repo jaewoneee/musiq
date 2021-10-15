@@ -71,7 +71,7 @@
 
 <script>
 import Modal from "./common/ItemModal.vue";
-import { isFavorite, addFavorite } from "../api/index";
+import { isFavorite, addFavorite } from "../api/music";
 
 export default {
   data() {
