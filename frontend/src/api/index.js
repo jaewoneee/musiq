@@ -1,29 +1,39 @@
 import axios from "axios";
+import { setInterceptors } from "./common/interceptors";
+
+function createInstance() {
+  const instance = axios.create({
+    baseURL: "http://localhost:3000/api",
+  });
+  return setInterceptors(instance);
+}
+
+const instance = createInstance();
 
 // 회원가입
 function registerUser(user) {
   const url = "http://localhost:3000/api/users/signup";
-  return axios.post(url, user);
+  return instance.post(url, user);
 }
 //로그인
 function loginUser(user) {
   const url = "http://localhost:3000/api/users/login";
-  return axios.post(url, user);
+  return instance.post(url, user);
 }
 // 추천 플레이리스트 가져오기
 function getPlaylist() {
   let url = "http://localhost:3000/api/main";
-  return axios.get(url);
+  return instance.get(url);
 }
 // 음악정보 가져오기
 function getMusicList(value) {
   let url = `http://localhost:3000/api/search/${value}`;
-  return axios.get(url);
+  return instance.get(url);
 }
 // 좋아요 리스트 추가
 function addFavorite(item) {
   let url = "http://localhost:3000/api/search/add";
-  return axios.post(url, null, {
+  return instance.post(url, null, {
     params: {
       id: item.id,
       artist: item.artist,
@@ -35,7 +45,7 @@ function addFavorite(item) {
 // 좋아요 여부 확인
 function isFavorite(id) {
   let url = `http://localhost:3000/api/search/fav/${id}`;
-  return axios.get(url);
+  return instance.get(url);
 }
 export {
   registerUser,

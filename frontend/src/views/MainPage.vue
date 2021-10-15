@@ -4,7 +4,7 @@
       <p class="text-name-box">
         Hello,
         <template v-if="$store.state.user">
-          <span>{{ $store.state.user.nickname }}</span></template
+          <span>{{ $store.state.user }}</span></template
         >
         <template v-else><span>Stranger</span></template
         >.

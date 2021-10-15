@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { deleteCookie } from "../../utils/cookies";
 export default {
   data() {
     return {};
@@ -39,6 +40,8 @@ export default {
   },
   methods: {
     logoutUser() {
+      deleteCookie("m_user");
+      deleteCookie("m_auth");
       this.$store.commit("clearUsername");
       this.$router.push("/");
     },

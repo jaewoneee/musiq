@@ -46,7 +46,8 @@ app.use(express.static(path.join(__dirname, "public")));
 // Routes
 app.use('/api/users', usersRouter);
 app.use('/api/main', listRouter);
-app.use("/api/search", auth.authUser, musicRouter);
+// app.use("/api/search", auth.authUser, musicRouter);
+app.use("/api/search", musicRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
