@@ -5,6 +5,7 @@ module.exports = {
   },
   extends: ["plugin:vue/essential", "@vue/prettier"],
   rules: {
+    "react/react-in-jsx-scope": "off",
     "no-console": "off",
     // "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
     // "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off"
@@ -26,6 +27,7 @@ module.exports = {
   parserOptions: {
     parser: "babel-eslint",
   },
+  
   // overrides: [
   //   {
   //     files: [

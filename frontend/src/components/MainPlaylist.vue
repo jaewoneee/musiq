@@ -41,7 +41,7 @@
           <li v-for="list in this.playlist" v-bind:key="list.title">
             <img :src="list.img" alt="" />
             <p>{{ list.title }}</p>
-            <p>{{ list.singer }}</p>
+            <p>{{ list.artist }}</p>
           </li>
         </ul>
       </div>

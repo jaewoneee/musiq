@@ -1,7 +1,7 @@
 var express = require("express") ;
 var SpotifyWebApi = require("spotify-web-api-node");
-const connection = require("../mysql");
-var SpotifyInfo = require("../spotify.json");
+const connection = require("../config/mysql");
+var SpotifyInfo = require("../config/spotify.json");
 
 var router = express.Router();
 
@@ -42,15 +42,23 @@ router.get("/:id", function (req, res) {
 });
 
 // 좋아요 리스트에 음원 추가
-router.get("/add", function(req, res){
-  var data = req.data;
+router.post("/add", function(req, res){
+  const item = req.query;
+  const info = {
+    id: item.id,
+    artist: item.artist,
+    title:item.title,
+    img:item.src
+  }
+  connection.query()
   console.log(data);
+  res.send(data);
  
 });
 
 // 좋아요 리스트 등록 여부 확인
 router.get("/fav/:id", function(req, res){
-  var id = req.params.id;
+  const id = req.params.id;
   console.log(res);
  res.status(200).json({key:id})
 });
