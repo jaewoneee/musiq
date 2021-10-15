@@ -5,8 +5,10 @@ import { getMusicList } from "../api/music";
 import {
   saveAuthToCookie,
   saveUserToCookie,
+  saveUuidToCookie,
   getAuthFromCookie,
   getUserFromCookie,
+  getUuidFromCookie,
 } from "../utils/cookies";
 
 Vue.use(Vuex);
@@ -15,7 +17,7 @@ export default new Vuex.Store({
   state: {
     user: getUserFromCookie() || "",
     token: getAuthFromCookie() || "",
-    uuid: "",
+    uuid: getUuidFromCookie() || "",
     array: "",
   },
   mutations: {
@@ -31,9 +33,10 @@ export default new Vuex.Store({
     setToken(state, token) {
       state.token = token;
     },
-    clearUsername(state) {
+    clearUserInfo(state) {
       state.user = "";
       state.token = "";
+      state.uuid = "";
     },
   },
   actions: {
@@ -44,6 +47,7 @@ export default new Vuex.Store({
       commit("setToken", data.token);
       saveAuthToCookie(data.token);
       saveUserToCookie(data.user.nickname);
+      saveUuidToCookie(data.user.uuid);
       console.log(data);
     },
     async SIGNUP({ commit }, value) {

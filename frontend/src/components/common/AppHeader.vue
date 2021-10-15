@@ -42,7 +42,8 @@ export default {
     logoutUser() {
       deleteCookie("m_user");
       deleteCookie("m_auth");
-      this.$store.commit("clearUsername");
+      deleteCookie("m_uuid");
+      this.$store.commit("clearUserInfo");
       this.$router.push("/");
     },
   },

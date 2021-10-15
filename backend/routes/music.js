@@ -28,7 +28,6 @@ router.get("/:id", function (req, res) {
       // 검색어를 통한 가수 혹은 노래 검색
       spotifyApi.searchTracks(id, { limit: 50 }).then(
         function (data) {
-          console.log(data);
           res.send(data.body);
         },
         function (err) {
@@ -48,14 +47,22 @@ router.post("/add", function(req, res){
     id: item.id,
     artist: item.artist,
     title:item.title,
-    img:item.src
+    img:item.src,
+    uuid:item.uuid
   }
-  connection.query()
-  console.log(data);
-  res.send(data);
+  connection.query('INSERT INTO fav_playlist (id, artist, title, img, uuid) VALUES(?, ?, ?, ?, ?)', [info.id, info.artist, info.title, info.img, info.uuid],(err, result)=>{
+    if(err) throw err;
+  });
+  return res.send('success');
  
 });
-
+// 좋아요 리스트에 음원 삭제
+router.delete("/:id", function(req ,res){
+  const id = req.params.id;
+  connection.query('DELETE FROM fav_playlist WHERE id=?', [id], (err, result)=>{
+    return res.send('delete');
+  })
+})
 // 좋아요 리스트 등록 여부 확인
 router.get("/fav/:id", function(req, res){
   const id = req.params.id;

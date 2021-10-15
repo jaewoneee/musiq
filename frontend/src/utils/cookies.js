@@ -5,6 +5,9 @@ function saveAuthToCookie(value) {
 function saveUserToCookie(value) {
   document.cookie = `m_user=${value}`;
 }
+function saveUuidToCookie(value) {
+  document.cookie = `m_uuid=${value}`;
+}
 
 function getAuthFromCookie() {
   return document.cookie.replace(
@@ -19,6 +22,12 @@ function getUserFromCookie() {
     "$1",
   );
 }
+function getUuidFromCookie() {
+  return document.cookie.replace(
+    /(?:(?:^|.*;\s*)m_uuid\s*=\s*([^;]*).*$)|^.*$/,
+    "$1",
+  );
+}
 
 function deleteCookie(value) {
   document.cookie = `${value}=; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
@@ -27,7 +36,9 @@ function deleteCookie(value) {
 export {
   saveAuthToCookie,
   saveUserToCookie,
+  saveUuidToCookie,
   getAuthFromCookie,
   getUserFromCookie,
+  getUuidFromCookie,
   deleteCookie,
 };
