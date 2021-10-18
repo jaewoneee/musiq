@@ -51,9 +51,7 @@ export default new Vuex.Store({
       console.log(data);
     },
     async SIGNUP({ commit }, value) {
-      const { data } = await registerUser(value);
-      commit("setUsername", data);
-      console.log(data);
+      await registerUser(value);
     },
     async SEARCH({ commit }, value) {
       let response = await getMusicList(value);

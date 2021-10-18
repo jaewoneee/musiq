@@ -28,7 +28,7 @@ router.get("/:id", function (req, res) {
       // 검색어를 통한 가수 혹은 노래 검색
       spotifyApi.searchTracks(id, { limit: 50 }).then(
         function (data) {
-          res.send(data.body);
+          return res.send(data.body);
         },
         function (err) {
           console.log("Something went wrong!", err);
@@ -61,6 +61,7 @@ router.post("/add", function(req, res){
 router.delete("/:id", function(req ,res){
   const id = req.params.id;
   connection.query('DELETE FROM fav_playlist WHERE id=?', [id], (err, result)=>{
+    if(err) throw err;
     return res.send('delete');
   })
 });
@@ -70,16 +71,16 @@ router.post("/fav", function(req, res){
   const info = req.query;
   const likedArray = [];
   connection.query('SELECT * FROM fav_playlist WHERE uuid=?', [info.uuid], (err, result)=>{
-   if(result[0]){
+   if(result[0]){ // 좋아요 내역 존재하면,
     for(i=0;i<result.length; i++){
       likedArray.push(result[i].id);
     }
-    if(likedArray.includes(info.id)){
+    if(likedArray.includes(info.id)){ // 좋아요 리스트에 해당 아이템 유무 체크
       return res.send(false);
     }else{
       return res.send(true);
     }
-   }else{
+   }else{ // 좋아요 내역 없으면,
     return res.send(true);
    }
   })

@@ -71,7 +71,7 @@ router.post('/signup', function (req, res, next) {
       const encryptedPassword = bcrypt.hashSync(user.password, salt);
       connection.query('INSERT INTO users (uuid, username, password, nickname) VALUES(?, ?, ?, ?)', [user.id, user.username, encryptedPassword, user.nickname], (err, result) => {
         if (err) throw err;
-        return res.send('Stranger');
+        return res.send('Success');
       });
     } else { // 중복된 username이라면
       return res.status(401).json({msg:'중복된 아이디입니다'});
