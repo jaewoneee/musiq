@@ -3,7 +3,6 @@ var bcrypt = require('bcrypt');
 var shortid = require('shortid');
 var connection = require('../config/mysql');
 var router = express.Router();
-
 var auth = require('../utils/auth');
 
 // DB Connect
@@ -16,17 +15,13 @@ connection.connect(function (err) {
 });
 
 // 로그인
-router.get('/login', function(req, res, next){
-  
-});
-
 router.post('/login', function (req, res, next) {
   const loginUser = {
     username: req.body.username,
     password: req.body.password
   }
   connection.query('SELECT * FROM users WHERE username = ?', [loginUser.username], function (err, result) {
-    var user = result[0];
+    const user = result[0];
     if (err){throw err;}
     else if(result[0]){
       if (result[0] == undefined) { // 존재하지 않는 유저라면
@@ -76,8 +71,8 @@ router.post('/signup', function (req, res, next) {
       const encryptedPassword = bcrypt.hashSync(user.password, salt);
       connection.query('INSERT INTO users (uuid, username, password, nickname) VALUES(?, ?, ?, ?)', [user.id, user.username, encryptedPassword, user.nickname], (err, result) => {
         if (err) throw err;
+        return res.send('Stranger');
       });
-      return res.send('success');
     } else { // 중복된 username이라면
       return res.status(401).json({msg:'중복된 아이디입니다'});
     }

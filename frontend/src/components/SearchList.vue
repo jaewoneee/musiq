@@ -105,6 +105,7 @@ export default {
   methods: {
     async showItem(e) {
       const i = e.path[2].childNodes[3].value;
+      const uuid = this.$store.state.uuid;
       const info = {
         id: this.$store.state.array[i].id,
         artist: this.$store.state.array[i].artists[0].name,
@@ -112,17 +113,24 @@ export default {
         src: this.$store.state.array[i].album.images[0].url,
         href: this.$store.state.array[i].preview_url,
       };
-      // await isFavorite(info.id);
+      const { data } = await isFavorite(info.id, uuid);
+
       this.currentItem = info;
+      this.toFavorite = data;
       this.showModal = !this.showModal;
     },
     async addItem(item) {
-      var uuid = this.$store.state.uuid;
-      await addFavorite(item, uuid);
-      this.toFavorite = !this.toFavorite;
+      const uuid = this.$store.state.uuid;
+      if (uuid !== "") {
+        await addFavorite(item, uuid);
+        this.toFavorite = !this.toFavorite;
+      } else {
+        alert("로그인하세요");
+      }
     },
     async deleteItem(id) {
       await deleteFavorite(id);
+      this.toFavorite = !this.toFavorite;
     },
     clearItem() {
       this.currentItem = {};

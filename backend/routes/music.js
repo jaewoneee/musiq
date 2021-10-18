@@ -1,6 +1,6 @@
 var express = require("express") ;
 var SpotifyWebApi = require("spotify-web-api-node");
-const connection = require("../config/mysql");
+var connection = require("../config/mysql");
 var SpotifyInfo = require("../config/spotify.json");
 
 var router = express.Router();
@@ -14,7 +14,7 @@ var spotifyApi = new SpotifyWebApi(credentials);
 
 // 음악 검색 결과 리스트 생성
 router.get("/:id", function (req, res) {
-  var id = req.params.id; // 검색어
+  const id = req.params.id; // 검색어
 
   spotifyApi
     .clientCredentialsGrant()
@@ -56,18 +56,33 @@ router.post("/add", function(req, res){
   return res.send('success');
  
 });
+
 // 좋아요 리스트에 음원 삭제
 router.delete("/:id", function(req ,res){
   const id = req.params.id;
   connection.query('DELETE FROM fav_playlist WHERE id=?', [id], (err, result)=>{
     return res.send('delete');
   })
-})
-// 좋아요 리스트 등록 여부 확인
-router.get("/fav/:id", function(req, res){
-  const id = req.params.id;
-  console.log(res);
- res.status(200).json({key:id})
 });
 
+// 좋아요 리스트 등록 여부 확인
+router.post("/fav", function(req, res){
+  const info = req.query;
+  const likedArray = [];
+  connection.query('SELECT * FROM fav_playlist WHERE uuid=?', [info.uuid], (err, result)=>{
+   if(result[0]){
+    for(i=0;i<result.length; i++){
+      likedArray.push(result[i].id);
+    }
+    if(likedArray.includes(info.id)){
+      return res.send(false);
+    }else{
+      return res.send(true);
+    }
+   }else{
+    return res.send(true);
+   }
+  })
+
+});
 module.exports = router;

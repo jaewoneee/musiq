@@ -33,9 +33,9 @@ function deleteFavorite(id) {
 }
 
 // 좋아요 여부 확인
-function isFavorite(id) {
-  let url = `http://localhost:3000/api/music/fav/${id}`;
-  return instance.get(url);
+function isFavorite(id, uuid) {
+  let url = `http://localhost:3000/api/music/fav`;
+  return instance.post(url, null, { params: { id: id, uuid: uuid } });
 }
 
 export { getPlaylist, getMusicList, addFavorite, isFavorite, deleteFavorite };
