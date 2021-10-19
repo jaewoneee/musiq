@@ -15,7 +15,10 @@
           <input type="hidden" :value="index" id="index" />
         </li>
       </ul>
-      <button style="color: #fff" @click="nextItems">more</button>
+      <template v-if="offsetValue">
+        <button style="color: #fff" @click="prevItems">prev</button>
+      </template>
+      <button style="color: #fff" @click="nextItems">next</button>
     </template>
     <template v-else>
       <ul>
@@ -93,7 +96,6 @@ export default {
       currentItem: {},
       showModal: false,
       toFavorite: true,
-      // offset: 30,
     };
   },
   components: {
@@ -120,12 +122,18 @@ export default {
 
     // 다음 아이템 페이지
     nextItems() {
-      this.$store.dispatch("SEARCH");
+      this.$store.dispatch("SEARCH", "increment");
       setTimeout(() => {
         window.scrollTo(0, 0);
       }, 300);
     },
-
+    // 이전 아이템 페이지
+    prevItems() {
+      this.$store.dispatch("SEARCH", "decrement");
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 300);
+    },
     // 좋아요 리스트에 추가
     async addItem(item) {
       const uuid = this.$store.state.uuid;
@@ -152,6 +160,9 @@ export default {
   computed: {
     isMusicSearch() {
       return this.$store.getters.isSearched;
+    },
+    offsetValue() {
+      return this.$store.getters.offsetCheck;
     },
   },
 };

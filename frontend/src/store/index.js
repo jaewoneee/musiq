@@ -33,8 +33,11 @@ export default new Vuex.Store({
       state.keyword = value;
       state.offset = 0;
     },
-    setOffset(state) {
+    incrementOffset(state) {
       state.offset += 30;
+    },
+    decrementOffset(state) {
+      state.offset -= 30;
     },
     setList(state, data) {
       state.array = data.items;
@@ -62,12 +65,18 @@ export default new Vuex.Store({
     KEYWORD({ commit }, value) {
       commit("setKeyword", value);
     },
-    async SEARCH({ commit }) {
+    async SEARCH({ commit }, separator) {
       let keyword = this.state.keyword;
+      if (separator == "increment") {
+        commit("incrementOffset");
+      } else if (separator == "decrement") {
+        commit("decrementOffset");
+      } else {
+        this.state.offset = 0;
+      }
       let offset = this.state.offset;
       let response = await getMusicList(keyword, offset);
       commit("setList", response.data.tracks);
-      commit("setOffset");
     },
   },
   modules: {},
@@ -77,6 +86,9 @@ export default new Vuex.Store({
     },
     isSearched(state) {
       return state.array !== "";
+    },
+    offsetCheck(state) {
+      return state.offset >= 30;
     },
   },
 });

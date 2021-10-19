@@ -20,7 +20,7 @@ export default {
   methods: {
     sendKeyword() {
       this.$store.dispatch("KEYWORD", this.keyword);
-      this.$store.dispatch("SEARCH");
+      this.$store.dispatch("SEARCH", "default");
     },
   },
 };
