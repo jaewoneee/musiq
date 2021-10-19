@@ -7,9 +7,9 @@ function getPlaylist() {
 }
 
 // 음악정보 가져오기
-function getMusicList(value) {
+function getMusicList(value, offset) {
   let url = `http://localhost:3000/api/music/${value}`;
-  return instance.get(url);
+  return instance.get(url, { params: { offset: offset } });
 }
 
 // 좋아요 리스트 추가

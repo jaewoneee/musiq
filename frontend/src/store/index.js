@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { registerUser, loginUser } from "../api/auth";
+import { loginUser } from "../api/auth";
 import { getMusicList } from "../api/music";
 import {
   saveAuthToCookie,
@@ -18,6 +18,8 @@ export default new Vuex.Store({
     user: getUserFromCookie() || "",
     token: getAuthFromCookie() || "",
     uuid: getUuidFromCookie() || "",
+    keyword: "",
+    offset: 0,
     array: "",
   },
   mutations: {
@@ -27,8 +29,15 @@ export default new Vuex.Store({
     setUUID(state, uuid) {
       state.uuid = uuid;
     },
+    setKeyword(state, value) {
+      state.keyword = value;
+      state.offset = 0;
+    },
+    setOffset(state) {
+      state.offset += 30;
+    },
     setList(state, data) {
-      state.array = data;
+      state.array = data.items;
     },
     setToken(state, token) {
       state.token = token;
@@ -50,13 +59,15 @@ export default new Vuex.Store({
       saveUuidToCookie(data.user.uuid);
       console.log(data);
     },
-    async SIGNUP({ commit }, value) {
-      await registerUser(value);
+    KEYWORD({ commit }, value) {
+      commit("setKeyword", value);
     },
-    async SEARCH({ commit }, value) {
-      let response = await getMusicList(value);
-      console.log(response);
-      commit("setList", response.data.tracks.items);
+    async SEARCH({ commit }) {
+      let keyword = this.state.keyword;
+      let offset = this.state.offset;
+      let response = await getMusicList(keyword, offset);
+      commit("setList", response.data.tracks);
+      commit("setOffset");
     },
   },
   modules: {},

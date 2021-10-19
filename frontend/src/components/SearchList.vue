@@ -13,13 +13,9 @@
           <p class="title">{{ item.name }}</p>
           <p class="artist">{{ item.artists[0].name }}</p>
           <input type="hidden" :value="index" id="index" />
-          <!-- <template v-if="item.preview_url">
-          <video controls="" name="media">
-            <source :src="item.preview_url" type="audio/mpeg" />
-          </video>
-        </template> -->
         </li>
       </ul>
+      <button style="color: #fff" @click="nextItems">more</button>
     </template>
     <template v-else>
       <ul>
@@ -97,12 +93,14 @@ export default {
       currentItem: {},
       showModal: false,
       toFavorite: true,
+      // offset: 30,
     };
   },
   components: {
     Modal,
   },
   methods: {
+    // 음악 상세 모달 띄우기
     async showItem(e) {
       const i = e.path[2].childNodes[3].value;
       const uuid = this.$store.state.uuid;
@@ -119,6 +117,16 @@ export default {
       this.toFavorite = data;
       this.showModal = !this.showModal;
     },
+
+    // 다음 아이템 페이지
+    nextItems() {
+      this.$store.dispatch("SEARCH");
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 300);
+    },
+
+    // 좋아요 리스트에 추가
     async addItem(item) {
       const uuid = this.$store.state.uuid;
       if (uuid !== "") {
@@ -128,10 +136,14 @@ export default {
         alert("로그인하세요");
       }
     },
+
+    // 좋아요 리스트에서 제거
     async deleteItem(id) {
       await deleteFavorite(id);
       this.toFavorite = !this.toFavorite;
     },
+
+    // 초기화
     clearItem() {
       this.currentItem = {};
       this.showModal = !this.showModal;
