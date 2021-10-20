@@ -270,7 +270,43 @@
 .search-list-box ul li .artist {
   font-size: 2.5vw;
 }
+.fav-list-box ul {
+  width: 100%;
+}
+.fav-list-box ul li {
+  width: 100%;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #fff;
+  font-size: 2.5vw;
+}
+.fav-list-box ul li:nth-child(1) {
+  border-top: 1px solid #fff;
+}
+.fav-list-box ul li img {
+  width: 15%;
+}
+.fav-list-box ul li p {
+  width: 30%;
+}
 
+.to-fav-box {
+  position: fixed;
+  bottom: 20%;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  background-color: skyblue;
+}
+.to-fav-box .fav-btn {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  border-radius: 50%;
+}
 /* modal */
 .modal-mask {
   position: fixed;

@@ -34,10 +34,10 @@ export default new Vuex.Store({
       state.offset = 0;
     },
     incrementOffset(state) {
-      state.offset += 30;
+      state.offset += 32;
     },
     decrementOffset(state) {
-      state.offset -= 30;
+      state.offset -= 32;
     },
     setList(state, data) {
       state.array = data.items;
@@ -88,7 +88,7 @@ export default new Vuex.Store({
       return state.array !== "";
     },
     offsetCheck(state) {
-      return state.offset >= 30;
+      return state.offset >= 32;
     },
   },
 });

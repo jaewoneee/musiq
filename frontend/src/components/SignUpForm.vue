@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { registerUser } from "../api/auth";
 export default {
   data() {
     return {
@@ -51,7 +52,7 @@ export default {
           password: this.password,
           nickname: this.nickname,
         };
-        await this.$store.dispatch("SIGNUP", userData);
+        await registerUser(userData);
         this.$router.push("/");
       } catch (error) {
         console.log(error);

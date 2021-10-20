@@ -36,7 +36,7 @@ const router = new VueRouter({
       component: () => import("../views/SearchPage.vue"),
     },
     {
-      path: "/favorite",
+      path: "/fav",
       name: "Favorite",
       component: () => import("../views/FavoritePage.vue"),
     },

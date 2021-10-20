@@ -28,7 +28,7 @@ router.get("/:id", function (req, res) {
             // 검색어를 통한 가수 혹은 노래 검색
             spotifyApi.searchTracks(id, {
                 offset:offset,
-                limit: 30
+                limit: 32
             }).then(
                 function (data) {
                     return res.send(data.body);
@@ -43,7 +43,15 @@ router.get("/:id", function (req, res) {
         });
 });
 
-
+// 사용자의 좋아요 리스트 가져오기
+router.post("/fetch", (req, res)=>{
+    const uuid = req.query.uuid;
+    console.log(uuid);
+    connection.query('SELECT id, artist, title, img FROM fav_playlist WHERE uuid = ?', [uuid], (err, result)=>{
+        if (err) throw err;
+        res.send(result);
+    })
+})
 
 // 좋아요 리스트에 음원 추가
 router.post("/add", function (req, res) {

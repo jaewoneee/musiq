@@ -15,10 +15,15 @@
           <input type="hidden" :value="index" id="index" />
         </li>
       </ul>
-      <template v-if="offsetValue">
-        <button style="color: #fff" @click="prevItems">prev</button>
-      </template>
-      <button style="color: #fff" @click="nextItems">next</button>
+      <div class="to-fav-box">
+        <a href="/fav" class="fav-btn">favorite</a>
+      </div>
+      <div class="btn-box">
+        <template v-if="offsetValue">
+          <button class="prev-p-btn" @click="prevItems">prev</button>
+        </template>
+        <button class="next-p-btn" @click="nextItems">next</button>
+      </div>
     </template>
     <template v-else>
       <ul>
@@ -168,4 +173,18 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.btn-box {
+  overflow: hidden;
+  background-color: red;
+}
+button[class*="p-btn"] {
+  color: #fff;
+
+  border: 1px solid #fff;
+  padding: 10px;
+}
+button.next-p-btn {
+  float: right;
+}
+</style>
