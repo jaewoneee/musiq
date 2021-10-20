@@ -15,8 +15,8 @@
           <input type="hidden" :value="index" id="index" />
         </li>
       </ul>
-      <div class="to-fav-box">
-        <a href="/fav" class="fav-btn">favorite</a>
+      <div class="to-fav-box" v-if="this.$store.state.uuid != ''">
+        <a href="/fav" class="fav-btn"></a>
       </div>
       <div class="btn-box">
         <template v-if="offsetValue">
@@ -146,7 +146,7 @@ export default {
         await addFavorite(item, uuid);
         this.toFavorite = !this.toFavorite;
       } else {
-        alert("로그인하세요");
+        this.$router.push("/login");
       }
     },
 

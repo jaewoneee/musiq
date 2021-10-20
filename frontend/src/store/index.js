@@ -50,6 +50,9 @@ export default new Vuex.Store({
       state.token = "";
       state.uuid = "";
     },
+    clearArray(state) {
+      state.array = "";
+    },
   },
   actions: {
     async LOGIN({ commit }, value) {
@@ -57,10 +60,10 @@ export default new Vuex.Store({
       commit("setUsername", data.user.nickname);
       commit("setUUID", data.user.uuid);
       commit("setToken", data.token);
+      commit("clearArray");
       saveAuthToCookie(data.token);
       saveUserToCookie(data.user.nickname);
       saveUuidToCookie(data.user.uuid);
-      console.log(data);
     },
     KEYWORD({ commit }, value) {
       commit("setKeyword", value);
