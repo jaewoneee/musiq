@@ -7,12 +7,16 @@
 
       <ul class="nav">
         <li>
-          <router-link to="/main">List</router-link>
+          <router-link to="/main">Home</router-link>
         </li>
         <li>
           <router-link to="/search">Search</router-link>
         </li>
+
         <template v-if="isUserLogin">
+          <li>
+            <router-link to="/fav">fav</router-link>
+          </li>
           <li>
             <a href="javascript:;" @click="logoutUser" id="logout-btn"
               >Logout
@@ -20,6 +24,9 @@
           </li>
         </template>
         <template v-else>
+          <li>
+            <a href="/login">fav</a>
+          </li>
           <li><router-link to="/login">Login</router-link></li>
         </template>
       </ul>

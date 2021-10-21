@@ -15,9 +15,6 @@
           <input type="hidden" :value="index" id="index" />
         </li>
       </ul>
-      <div class="to-fav-box" v-if="this.$store.state.uuid != ''">
-        <a href="/fav" class="fav-btn"></a>
-      </div>
       <div class="btn-box">
         <template v-if="offsetValue">
           <button class="prev-p-btn" @click="prevItems">prev</button>
@@ -26,9 +23,7 @@
       </div>
     </template>
     <template v-else>
-      <ul>
-        <li>nothing to show</li>
-      </ul>
+      <div>nothing to show..</div>
     </template>
     <Modal v-if="showModal" @close="showModal = false">
       <div slot="header">
@@ -117,6 +112,7 @@ export default {
         title: this.$store.state.array[i].name,
         src: this.$store.state.array[i].album.images[0].url,
         href: this.$store.state.array[i].preview_url,
+        url: this.$store.state.array[i].external_urls.spotify,
       };
       const { data } = await isFavorite(info.id, uuid);
 
@@ -132,6 +128,7 @@ export default {
         window.scrollTo(0, 0);
       }, 300);
     },
+
     // 이전 아이템 페이지
     prevItems() {
       this.$store.dispatch("SEARCH", "decrement");
@@ -139,10 +136,12 @@ export default {
         window.scrollTo(0, 0);
       }, 300);
     },
+
     // 좋아요 리스트에 추가
     async addItem(item) {
       const uuid = this.$store.state.uuid;
       if (uuid !== "") {
+        // 로그인 여부 확인
         await addFavorite(item, uuid);
         this.toFavorite = !this.toFavorite;
       } else {
@@ -176,7 +175,7 @@ export default {
 <style scoped>
 .btn-box {
   overflow: hidden;
-  background-color: red;
+  margin-top: 3vw;
 }
 button[class*="p-btn"] {
   color: #fff;

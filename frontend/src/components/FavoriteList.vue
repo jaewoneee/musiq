@@ -3,7 +3,7 @@
     <ul>
       <li v-for="(favItem, index) in favList" v-bind:key="favItem.id">
         <img :src="favItem.img" alt="" />
-        <p>{{ favItem.title }}</p>
+        <a :href="favItem.url" target="_blank">{{ favItem.title }}</a>
         <p>{{ favItem.artist }}</p>
         <button @click="deleteItem(favItem.id, index)">
           <svg

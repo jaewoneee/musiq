@@ -21,6 +21,7 @@ function addFavorite(item, uuid) {
       artist: item.artist,
       title: item.title,
       src: item.src,
+      url: item.url,
       uuid: uuid,
     },
   });

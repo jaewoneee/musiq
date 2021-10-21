@@ -47,7 +47,7 @@ router.get("/:id", function (req, res) {
 router.post("/fetch", (req, res)=>{
     const uuid = req.query.uuid;
     console.log(uuid);
-    connection.query('SELECT id, artist, title, img FROM fav_playlist WHERE uuid = ?', [uuid], (err, result)=>{
+    connection.query('SELECT id, artist, title, img, url FROM fav_playlist WHERE uuid = ?', [uuid], (err, result)=>{
         if (err) throw err;
         res.send(result);
     })
@@ -61,9 +61,10 @@ router.post("/add", function (req, res) {
         artist: item.artist,
         title: item.title,
         img: item.src,
+        url:item.url,
         uuid: item.uuid
     }
-    connection.query('INSERT INTO fav_playlist (id, artist, title, img, uuid) VALUES(?, ?, ?, ?, ?)', [info.id, info.artist, info.title, info.img, info.uuid], (err, result) => {
+    connection.query('INSERT INTO fav_playlist (id, artist, title, img, url, uuid) VALUES(?, ?, ?, ?, ?, ?)', [info.id, info.artist, info.title, info.img, info.url, info.uuid], (err, result) => {
         if (err) throw err;
     });
     return res.send('success');
