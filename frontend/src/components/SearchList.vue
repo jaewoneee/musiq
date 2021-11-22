@@ -1,11 +1,13 @@
 <template>
   <div class="search-list-box">
     <template v-if="isMusicSearch">
-      <ul>
+      <!-- <ul> -->
+      <transition-group mode="in-out" appear name="list" tag="ul">
         <li
           v-for="(item, index) in this.$store.state.array"
           :key="item.id"
           @click="showItem($event)"
+          class="list-item"
         >
           <div class="album-box">
             <img :src="item.album.images[1].url" alt="album_art" />
@@ -14,12 +16,17 @@
           <p class="artist">{{ item.artists[0].name }}</p>
           <input type="hidden" :value="index" id="index" />
         </li>
-      </ul>
+        <!-- </ul> -->
+      </transition-group>
       <div class="btn-box">
         <template v-if="offsetValue">
-          <button class="prev-p-btn" @click="prevItems">prev</button>
+          <button class="prev-p-btn" @click="prevItems" data-cursor-hover>
+            prev
+          </button>
         </template>
-        <button class="next-p-btn" @click="nextItems">next</button>
+        <button class="next-p-btn" @click="nextItems" data-cursor-hover>
+          next
+        </button>
       </div>
     </template>
     <template v-else>
@@ -30,7 +37,7 @@
         <button
           type="button"
           class="fas fa-times close-btn"
-          @click="clearItem"
+          @click="closeModal"
         ></button>
       </div>
       <div slot="body">
@@ -40,9 +47,9 @@
           <p>{{ currentItem.artist }}</p>
         </div>
       </div>
-      <div slot="fav">
+      <div slot="fav" class="add-box">
         <template v-if="toFavorite">
-          <button @click="addItem(currentItem)">
+          <button @click="addItem(currentItem)" class="add-fav-btn">
             <svg
               role="img"
               width="20"
@@ -75,13 +82,13 @@
           </button>
         </template>
       </div>
-      <div slot="player">
-        <template v-if="currentItem.href">
+      <template v-if="currentItem.href">
+        <div slot="player" class="video-box">
           <video controls="" name="media">
             <source :src="currentItem.href" type="audio/mpeg" />
           </video>
-        </template>
-      </div>
+        </div>
+      </template>
     </Modal>
   </div>
 </template>
@@ -115,12 +122,19 @@ export default {
         url: this.$store.state.array[i].external_urls.spotify,
       };
       const { data } = await isFavorite(info.id, uuid);
-
+      const body = document.querySelector("body");
+      body.style.overflow = "hidden";
       this.currentItem = info;
       this.toFavorite = data;
       this.showModal = !this.showModal;
     },
-
+    // 음악 상세 모달 닫기
+    closeModal() {
+      const body = document.querySelector("body");
+      body.style.removeProperty("overflow");
+      this.currentItem = {};
+      this.showModal = !this.showModal;
+    },
     // 다음 아이템 페이지
     nextItems() {
       this.$store.dispatch("SEARCH", "increment");
@@ -154,12 +168,6 @@ export default {
       await deleteFavorite(id);
       this.toFavorite = !this.toFavorite;
     },
-
-    // 초기화
-    clearItem() {
-      this.currentItem = {};
-      this.showModal = !this.showModal;
-    },
   },
   computed: {
     isMusicSearch() {
@@ -176,14 +184,21 @@ export default {
 .btn-box {
   overflow: hidden;
   margin-top: 3vw;
+  padding-bottom: 10px;
 }
-button[class*="p-btn"] {
+.btn-box button[class*="p-btn"] {
   color: #fff;
-
   border: 1px solid #fff;
   padding: 10px;
+  font-weight: 500;
 }
-button.next-p-btn {
+.btn-box button[class*="p-btn"]:hover {
+  color: #000;
+  border: 1px solid var(--color);
+  background-color: var(--color);
+  transition: 0.1s linear;
+}
+.btn-box button.next-p-btn {
   float: right;
 }
 </style>

@@ -10,8 +10,39 @@
         >.
       </p>
       <div class="text-quote-box">
-        <p>“Music is the shorthand of emotion.”</p>
-        <p>– Leo Tolstoy</p>
+        <ul class="flip">
+          <li>
+            <p>
+              “Some people have lives;
+              <br />
+              some people have music.”
+            </p>
+            <p>– Leo Tolstoy</p>
+          </li>
+          <li>
+            <p>
+              “Music – what a powerful instrument,
+              <br />
+              what a mighty weapon!”
+            </p>
+            <p>- Maria von Trapp</p>
+          </li>
+          <li>
+            <p>
+              “Without music,<br />
+              life would be a blank to me.”
+            </p>
+            <p>- Edith Sitwell</p>
+          </li>
+          <li>
+            <p>
+              “Music should be an essential part
+              <br />
+              of every analysis.”
+            </p>
+            <p>- Carl Jung</p>
+          </li>
+        </ul>
       </div>
     </div>
     <div>

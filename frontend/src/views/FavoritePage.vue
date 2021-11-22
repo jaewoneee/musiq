@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="content fav">
     <fav-list></fav-list>
   </div>
 </template>

@@ -51,6 +51,7 @@ export default {
       deleteCookie("m_auth");
       deleteCookie("m_uuid");
       this.$store.commit("clearUserInfo");
+      this.$store.commit("clearArray");
       this.$router.push("/");
     },
   },

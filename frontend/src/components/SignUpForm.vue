@@ -53,7 +53,8 @@ export default {
           nickname: this.nickname,
         };
         await registerUser(userData);
-        this.$router.push("/");
+        alert("WELCOME");
+        this.$router.push("/login");
       } catch (error) {
         console.log(error);
       }

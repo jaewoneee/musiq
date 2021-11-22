@@ -62,10 +62,26 @@ export default {
       title: "",
       showModal: false,
       swiperOption: {
-        slidesPerView: 1.2,
         loop: true,
         autoplay: {
           delay: 3000,
+        },
+        breakpoints: {
+          360: {
+            slidesPerView: 1.2,
+          },
+          768: {
+            slidesPerView: 1.5,
+          },
+          1024: {
+            slidesPerView: 2.2,
+          },
+          1400: {
+            slidesPerView: 3,
+          },
+          2000: {
+            slidesPerView: 3.5,
+          },
         },
         pagination: {
           el: ".swiper-pagination",
