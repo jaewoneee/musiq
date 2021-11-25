@@ -12,35 +12,20 @@
       <div class="text-quote-box">
         <ul class="flip">
           <li>
-            <p>
-              “Some people have lives;
-              <br />
-              some people have music.”
-            </p>
-            <p>– Leo Tolstoy</p>
+            <p>“Music gives color to the air of the moment.”</p>
+            <p>– Karl Lagerfeld</p>
           </li>
           <li>
-            <p>
-              “Music – what a powerful instrument,
-              <br />
-              what a mighty weapon!”
-            </p>
-            <p>- Maria von Trapp</p>
+            <p>“Music is the universal language of mankind.”</p>
+            <p>- Henry Wadsworth Longfellow</p>
           </li>
           <li>
-            <p>
-              “Without music,<br />
-              life would be a blank to me.”
-            </p>
+            <p>“Without music, life would be a blank to me.”</p>
             <p>- Edith Sitwell</p>
           </li>
           <li>
-            <p>
-              “Music should be an essential part
-              <br />
-              of every analysis.”
-            </p>
-            <p>- Carl Jung</p>
+            <p>“Music is like a dream. One that I cannot hear. ”</p>
+            <p>- Ludwig van Beethoven</p>
           </li>
         </ul>
       </div>

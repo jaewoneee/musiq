@@ -5,6 +5,7 @@ var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var cors = require("cors");
+var helmet = require('helmet');
 
 var usersRouter = require("./routes/users");
 var listRouter = require("./routes/playlist");
@@ -19,6 +20,7 @@ app.set("view engine", "pug");
 
 app.use(logger("dev"));
 app.use(cors());
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());

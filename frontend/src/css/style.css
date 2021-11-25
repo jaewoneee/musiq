@@ -98,7 +98,7 @@
   height: auto;
 }
 .text-wrap .text-quote-box ul p:first-child {
-  font-size: 37px;
+  font-size: 35px;
   line-height: 50px;
   font-weight: 600;
   color: var(--color);
@@ -430,7 +430,7 @@
 /* mobile */
 @media screen and (min-width: 360px) {
   :root {
-    --height: 445px;
+    --height: 252px;
   }
   .header-wrap header {
     width: 96%;
@@ -447,6 +447,7 @@
     width: 96%;
     margin: 0 auto;
   }
+
   .content.login,
   .content.signup {
     width: 70%;
@@ -582,6 +583,20 @@
     font-size: 6vw;
   }
 }
+@media screen and (min-width: 860px) {
+  :root {
+    --height: 186px;
+  }
+  .text-wrap {
+    font-size: 3vw;
+  }
+  .text-wrap .text-quote-box ul p:first-child {
+    font-size: 28px;
+  }
+  .text-wrap .text-quote-box ul p:last-child {
+    margin-top: 20px;
+  }
+}
 @media screen and (min-width: 1024px) {
   .list-box h4 {
     font-size: 2vw;
@@ -630,11 +645,14 @@
     width: 400px;
     margin: 0 auto;
   }
+  .text-wrap .text-name-box {
+    font-size: 30px;
+  }
+  .text-wrap .text-quote-box ul p:first-child {
+    font-size: 35px;
+  }
 }
 @media screen and (min-width: 1400px) {
-  :root {
-    --height: 145px;
-  }
   .header-wrap header {
     width: 94%;
   }
@@ -656,6 +674,14 @@
     font-size: 30px;
     margin-bottom: 40px;
   }
+  .text-wrap .text-quote-box {
+    width: 90%;
+    max-width: 1050px;
+
+  }
+  .text-wrap .text-quote-box ul p:first-child {
+    font-size: 40px;
+  }
   .list-box h4 {
     font-size: 30px;
   }
@@ -672,6 +698,9 @@
   .content.main,
   .content.fav {
     max-width: 2000px;
+  }
+  .swiper .img-box::after {
+    padding-bottom: 40%;
   }
   .search-list-box ul li {
     width: calc((100% / 8) - 20px);
