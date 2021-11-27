@@ -276,11 +276,10 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   transition: #000 5000s;
   -webkit-text-fill-color: #fff !important;
-
 }
 
 /* 공통요소 */
-:root{
+:root {
   --color: rgb(228, 255, 75);
 }
 .bold {

@@ -17,13 +17,13 @@
           placeholder="password"
         />
       </div>
+      <p class="err-text">{{ dataMessage }}</p>
       <button type="submit" :disabled="!username || !password">Login</button>
       <div class="signup-box">
         <span>Don't have an account?</span
         ><router-link to="/signup">Sign up</router-link>
       </div>
     </form>
-    <p>{{ dataMessage }}</p>
   </div>
 </template>
 
@@ -46,7 +46,7 @@ export default {
         await this.$store.dispatch("LOGIN", userData);
         this.$router.push("/");
       } catch (error) {
-        console.log(error);
+        this.dataMessage = error.response.data.message;
       }
     },
   },

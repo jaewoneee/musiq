@@ -25,11 +25,11 @@
           placeholder="nickname"
         />
       </div>
+      <p class="err-text">{{ dataMessage }}</p>
       <button type="submit" :disabled="!username || !password || !nickname">
         Sign Up
       </button>
     </form>
-    <p>{{ dataMessage }}</p>
   </div>
 </template>
 
@@ -56,7 +56,7 @@ export default {
         alert("WELCOME");
         this.$router.push("/login");
       } catch (error) {
-        console.log(error);
+        this.dataMessage = error.response.data.message;
       }
     },
   },
