@@ -45,7 +45,8 @@ export default {
   methods: {
     // 좋아요 리스트에서 제거
     async deleteItem(id, idx) {
-      await deleteFavorite(id);
+      const uuid = this.$store.state.uuid;
+      await deleteFavorite(id, uuid);
       this.$delete(this.favList, idx);
     },
   },

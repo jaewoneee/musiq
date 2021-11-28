@@ -34,9 +34,9 @@ function fetchFavorites(uuid) {
 }
 
 // 좋아요 리스트에서 제거
-function deleteFavorite(id) {
-  let url = `http://localhost:3000/api/music/${id}`;
-  return instance.delete(url);
+function deleteFavorite(id, uuid) {
+  let url = `http://localhost:3000/api/music/delete/${id}`;
+  return instance.delete(url, { params: { uuid: uuid } });
 }
 
 // 좋아요 여부 확인

@@ -2,6 +2,9 @@
   <div class="search-list-box">
     <template v-if="isMusicSearch">
       <!-- <ul> -->
+      <div class="text-box">
+        Search Results for <span>{{ this.$store.state.keyword }}</span>
+      </div>
       <transition-group mode="in-out" appear name="list" tag="ul">
         <li
           v-for="(item, index) in this.$store.state.array"
@@ -121,7 +124,7 @@ export default {
         href: this.$store.state.array[i].preview_url,
         url: this.$store.state.array[i].external_urls.spotify,
       };
-      const { data } = await isFavorite(info.id, uuid);
+      const { data } = await isFavorite(info.id, uuid); // 좋아요 여부 확인
       const body = document.querySelector("body");
       body.style.overflow = "hidden";
       this.currentItem = info;
@@ -140,7 +143,7 @@ export default {
       this.$store.dispatch("SEARCH", "increment");
       setTimeout(() => {
         window.scrollTo(0, 0);
-      }, 300);
+      }, 150);
     },
 
     // 이전 아이템 페이지
@@ -148,24 +151,27 @@ export default {
       this.$store.dispatch("SEARCH", "decrement");
       setTimeout(() => {
         window.scrollTo(0, 0);
-      }, 300);
+      }, 200);
     },
 
     // 좋아요 리스트에 추가
     async addItem(item) {
       const uuid = this.$store.state.uuid;
+
+      // 로그인 여부 확인
       if (uuid !== "") {
-        // 로그인 여부 확인
         await addFavorite(item, uuid);
         this.toFavorite = !this.toFavorite;
       } else {
+        alert("Please login ");
         this.$router.push("/login");
       }
     },
 
     // 좋아요 리스트에서 제거
     async deleteItem(id) {
-      await deleteFavorite(id);
+      const uuid = this.$store.state.uuid;
+      await deleteFavorite(id, uuid);
       this.toFavorite = !this.toFavorite;
     },
   },
@@ -180,25 +186,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.btn-box {
-  overflow: hidden;
-  margin-top: 3vw;
-  padding-bottom: 10px;
-}
-.btn-box button[class*="p-btn"] {
-  color: #fff;
-  border: 1px solid #fff;
-  padding: 10px;
-  font-weight: 500;
-}
-.btn-box button[class*="p-btn"]:hover {
-  color: #000;
-  border: 1px solid var(--color);
-  background-color: var(--color);
-  transition: 0.1s linear;
-}
-.btn-box button.next-p-btn {
-  float: right;
-}
-</style>
+<style></style>
