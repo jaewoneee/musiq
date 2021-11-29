@@ -1,0 +1,5 @@
+{
+    "clientId": "549a660b63574965a551f777ec095506",
+    "clientSecret": "461c9f851ee84cb28f634012674e18f2",
+    "redirectUri":"http://localhost:8080/main"
+}
