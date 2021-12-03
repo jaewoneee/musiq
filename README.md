@@ -1,15 +1,17 @@
 # musiq
 
-###스포티파이 API를 활용한 음악 사이트
+### 스포티파이 API를 활용한 음악 사이트
 
 ---
 
-####🔗URL 
+#### 🔗URL 
+
 https://musiq-site.netlify.app/main
 
 ---
 
-####💻Tech Stacks
+#### 💻Tech Stacks
+
 <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
 <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
 <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
@@ -20,7 +22,7 @@ https://musiq-site.netlify.app/main
 ---
 
 
-####✔️Features 
+#### ✔️Features 
 1. 유저관련
     * 회원가입
         - ```bcrypt```로 유저 비밀번호 암호화 
@@ -33,7 +35,10 @@ https://musiq-site.netlify.app/main
 
 
 2. 음악 검색
+
     ```spotify-web-api-node```를 활용하여 음악 검색 기능 구현. 
+
+    
     <img src="/frontend/public/cap/cap_1.png" width="800px">
         <p style="font-size:14px; text-align:center;width:800px;">검색결과 페이지</p>
 
