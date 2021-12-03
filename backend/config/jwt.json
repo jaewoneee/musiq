@@ -1,4 +1,0 @@
-{
-    "SECRET_KEY": "project-token",
-    "EXPIRATION_DATE": "7d"
-}
