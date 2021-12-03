@@ -9,7 +9,7 @@
         <li
           v-for="(item, index) in this.$store.state.array"
           :key="item.id"
-          @click="showItem($event)"
+          @click="showItem(index)"
           class="list-item"
         >
           <div class="album-box">
@@ -113,16 +113,16 @@ export default {
   },
   methods: {
     // 음악 상세 모달 띄우기
-    async showItem(e) {
-      const i = e.path[2].childNodes[3].value;
+    async showItem(i) {
+      const index = i;
       const uuid = this.$store.state.uuid;
       const info = {
-        id: this.$store.state.array[i].id,
-        artist: this.$store.state.array[i].artists[0].name,
-        title: this.$store.state.array[i].name,
-        src: this.$store.state.array[i].album.images[0].url,
-        href: this.$store.state.array[i].preview_url,
-        url: this.$store.state.array[i].external_urls.spotify,
+        id: this.$store.state.array[index].id,
+        artist: this.$store.state.array[index].artists[0].name,
+        title: this.$store.state.array[index].name,
+        src: this.$store.state.array[index].album.images[0].url,
+        href: this.$store.state.array[index].preview_url,
+        url: this.$store.state.array[index].external_urls.spotify,
       };
       const { data } = await isFavorite(info.id, uuid); // 좋아요 여부 확인
       const body = document.querySelector("body");
@@ -143,7 +143,7 @@ export default {
       this.$store.dispatch("SEARCH", "increment");
       setTimeout(() => {
         window.scrollTo(0, 0);
-      }, 150);
+      }, 500);
     },
 
     // 이전 아이템 페이지
@@ -151,7 +151,7 @@ export default {
       this.$store.dispatch("SEARCH", "decrement");
       setTimeout(() => {
         window.scrollTo(0, 0);
-      }, 200);
+      }, 500);
     },
 
     // 좋아요 리스트에 추가
