@@ -27,7 +27,9 @@ https://musiq-site.netlify.app/main
     * 로그인
         - ```jsonwebtoken```을 활용하여 로그인 유지 기능 구현.
 <br>
+
 2. 추천 플레이리스트
+ 
     <img src="/frontend/public/cap/cap_4.png" width="800px">
 
         하단 이미지 클릭시 플레이리스트 모달창 생성
