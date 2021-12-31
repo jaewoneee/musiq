@@ -39,7 +39,9 @@
         <h2 class="title">{{ title }}</h2>
         <ul>
           <li v-for="list in this.playlist" v-bind:key="list.title">
-            <img :src="list.img" alt="" />
+            <div class="thumb">
+              <img :src="list.img" alt="" />
+            </div>
             <a :href="list.url" target="_blank">{{ list.title }}</a>
             <p>{{ list.artist }}</p>
           </li>

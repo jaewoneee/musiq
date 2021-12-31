@@ -87,7 +87,7 @@
       </div>
       <template v-if="currentItem.href">
         <div slot="player" class="video-box">
-          <video controls="" name="media">
+          <video controls name="media" playsinline>
             <source :src="currentItem.href" type="audio/mpeg" />
           </video>
         </div>
