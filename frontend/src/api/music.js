@@ -1,20 +1,21 @@
 import { instance } from "./index";
+const baseURL = `${process.env.VUE_APP_API_URL}/music`;
 
 // 추천 플레이리스트 가져오기
 function getPlaylist() {
-  let url = "http://localhost:3000/api/main";
+  let url = `${process.env.VUE_APP_API_URL}/main`;
   return instance.get(url);
 }
 
 // 음악정보 가져오기
 function getMusicList(value, offset) {
-  let url = `http://localhost:3000/api/music/${value}`;
+  let url = `${baseURL}/${value}`;
   return instance.get(url, { params: { offset: offset } });
 }
 
 // 좋아요 리스트 추가
 function addFavorite(item, uuid) {
-  let url = "http://localhost:3000/api/music/add";
+  let url = `${baseURL}/add`;
   return instance.post(url, null, {
     params: {
       id: item.id,
@@ -29,19 +30,19 @@ function addFavorite(item, uuid) {
 
 //사용자의 좋아요 리스트 가져오기
 function fetchFavorites(uuid) {
-  let url = "http://localhost:3000/api/music/fetch";
+  let url = `${baseURL}/fetch`;
   return instance.post(url, null, { params: { uuid: uuid } });
 }
 
 // 좋아요 리스트에서 제거
 function deleteFavorite(id, uuid) {
-  let url = `http://localhost:3000/api/music/delete/${id}`;
+  let url = `${baseURL}/delete/${id}`;
   return instance.delete(url, { params: { uuid: uuid } });
 }
 
 // 좋아요 여부 확인
 function isFavorite(id, uuid) {
-  let url = "http://localhost:3000/api/music/fav";
+  let url = `${baseURL}/fav`;
   return instance.post(url, null, { params: { id: id, uuid: uuid } });
 }
 
